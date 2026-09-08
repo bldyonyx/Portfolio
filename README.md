@@ -1,16 +1,34 @@
-# React + Vite
+# Portfolio ♡
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> a little corner of the internet for my work.  
+> ₊˚⊹♡ projects, experiments & things I'm learning ♡⊹˚₊
 
-Currently, two official plugins are available:
+My personal developer portfolio, where I showcase the projects
+I'm building and document my progress as I grow as a developer. (˶ᵔ ᵕ ᵔ˶)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✦ Made with
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+`React` · `JavaScript` · `Tailwind CSS` · `Vite`
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## ✦ Currently...
+
+This portfolio is still a work in progress! ૮ ˶ᵔ ᵕ ᵔ˶ ა
+
+I'm currently exploring the visual direction, designing the interface,
+and figuring out all the little details that will make it feel like me.
+
+The site will grow alongside my projects and my journey as a developer ♡
+
+More coming soon... ✦
+
+---
+
+<p align="center">
+  designed & built with ♡
+  <br>
+  (˶˃ ᵕ ˂˶)
+</p>
