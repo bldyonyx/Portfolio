@@ -1,12 +1,20 @@
-const skills = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'React',
-  'Tailwind CSS',
-  'Git',
-  'GitHub',
-  'Vite',
-]
+const skills = {
+  frontend: [
+    'HTML',
+    'CSS',
+    'JavaScript',
+  ],
+
+  frameworks: [
+    'React',
+    'Tailwind CSS',
+  ],
+
+  tools: [
+    'Git',
+    'GitHub',
+    'Vite',
+  ],
+}
 
 export default skills

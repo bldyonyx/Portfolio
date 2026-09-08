@@ -18,6 +18,12 @@ function About() {
           colors, layouts, and little details until a project starts to feel
           like my own.
         </p>
+
+        <div>
+          <p>languages</p>
+          <p>French・native</p>
+          <p>English・fluent</p>
+        </div>
       </div>
     </section>
   )
