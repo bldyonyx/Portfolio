@@ -3,10 +3,11 @@ function Contact() {
     <section id="contact">
       <p>say hello</p>
 
-      <h2>Let's get in touch ♡</h2>
+      <h2>Let's get in touch ‹𝟹</h2>
 
       <p>
-        Want to talk about a project, coding, or just say hi?
+        If you'd like to talk about a project, coding, or just say hi,
+        feel free to reach out.
       </p>
 
       <div>

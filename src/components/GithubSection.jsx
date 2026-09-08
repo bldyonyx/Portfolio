@@ -3,14 +3,15 @@ function GithubSection() {
     <section id="github">
       <p>coding lately</p>
 
-      <h2>My GitHub activity ♡</h2>
+      <h2>My GitHub activity ᛝ</h2>
 
       <p>
-        A little look at what I've been working on and learning along the way.
+        I started learning and building projects recently, so this section
+        is a little snapshot of my progress as I keep coding and learning.
       </p>
 
       <div>
-        {/* GitHub contribution graph will go here */}
+        {/* GitHub contribution graph will go here later :p */}
         <p>GitHub contributions</p>
       </div>
 
