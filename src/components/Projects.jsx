@@ -5,7 +5,7 @@ function Projects() {
   return (
     <section id="projects">
       <p>selected work</p>
-      <h2>Things I've built ♡</h2>
+      <h2>Things I've built ⨾</h2>
 
       <div>
         {projects.map((project) => (

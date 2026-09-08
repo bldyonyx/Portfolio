@@ -1,7 +1,13 @@
 function ProjectCard({ project }) {
   return (
     <article>
-      <h3>{project.title}</h3>
+      <div>
+        <h3>{project.title}</h3>
+
+        {project.status && (
+          <span>{project.status}</span>
+        )}
+      </div>
 
       <p>{project.description}</p>
 
