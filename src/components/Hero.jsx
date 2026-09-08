@@ -3,7 +3,7 @@ function Hero() {
     <section className="min-h-[80vh] flex items-center px-8">
       <div>
         <p className="mb-3 text-sm uppercase tracking-[0.2em]">
-          front-end developer
+          design ・ code ・ learning
         </p>
 
         <h1 className="text-6xl font-semibold leading-tight">
@@ -15,8 +15,8 @@ function Hero() {
         </h1>
 
         <p className="mt-6 max-w-md text-lg">
-          I'm learning React, JavaScript and Tailwind while building
-          projects that feel useful, playful and a little personal.
+          Student exploring front-end development,
+          one project at a time.
         </p>
 
         <div className="mt-8 flex gap-4">
