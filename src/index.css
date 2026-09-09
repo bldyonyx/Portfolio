@@ -1,17 +1,76 @@
 @import "tailwindcss";
 
-@theme {
-  --color-cream: #F6F1EB;
-  --color-paper: #FDFBFA;
 
-  --color-ink: #182027;
-  --color-navy: #12131C;
+/* ========================================
+   FONTS
+======================================== */
 
-  --color-pink: #D9BABF;
-  --color-wine: #53374C;
-  --color-blue: #B7CED6;
-  --color-sage: #BAC6B0;
+@font-face {
+  font-family: "Miracle History";
+  src: url("./assets/fonts/Miracle History.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
+
+@font-face {
+  font-family: "Type Machine";
+  src: url("./assets/fonts/Type Machine.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Angelface";
+  src: url("./assets/fonts/Angelface.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ========================================
+   TAILWIND THEME
+======================================== */
+
+@theme {
+
+  /* Fonts */
+
+  --font-display: "Miracle History", serif;
+  --font-typewriter: "Type Machine", monospace;
+  --font-hand: "Angelface", cursive;
+
+
+  /* Light */
+
+  --color-paper: #F8F1F2;
+  --color-cream: #F3E7E8;
+
+
+  /* Dark */
+
+  --color-ink: #241C1E;
+  --color-dark: #302426;
+
+
+  /* Pinks */
+
+  --color-pink: #E3C4CA;
+  --color-blush: #D7AEB8;
+
+
+  /* Accents */
+
+  --color-wine: #684550;
+  --color-mauve: #9B7882;
+}
+
+
+/* ========================================
+   BASE
+======================================== */
 
 html {
   scroll-behavior: smooth;
@@ -22,6 +81,24 @@ body {
   min-width: 320px;
   min-height: 100vh;
 
-  background-color: #f6f1f4;
-  color: #182027;
+  background-color: var(--color-dark);
+  color: var(--color-ink);
+
+  /* Main site font */
+  font-family: "Type Machine", monospace;
+}
+
+
+/* ========================================
+   BACKGROUND PATTERN
+======================================== */
+
+.hero-dots {
+  background-image: radial-gradient(
+    circle,
+    rgba(248, 241, 242, 0.14) 1.5px,
+    transparent 1.5px
+  );
+
+  background-size: 26px 26px;
 }
