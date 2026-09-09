@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import projects from '../data/projects'
 
 function ProjectDetails() {
@@ -10,11 +10,15 @@ function ProjectDetails() {
     return <p>Project not found.</p>
   }
 
-  return (
+    return (
     <main>
-      <p>project</p>
+        <Link to="/#projects">
+        ← Back to projects
+        </Link>
 
-      <h1>{project.title}</h1>
+        <p>project</p>
+
+        <h1>{project.title}</h1>
 
       {project.status && (
         <p>{project.status}</p>
