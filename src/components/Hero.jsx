@@ -1,10 +1,10 @@
-import Bow from '../assets/decorations/Bow'
+import bow from '../assets/decorations/bow.png'
 
 function Hero() {
   return (
     <section
       id="top"
-      className="hero-dots relative bg-dark px-4 pt-12 pb-7 text-ink sm:px-6 lg:px-8"
+      className="hero-dots relative bg-dark px-4 pb-4 pt-9 text-ink sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
 
@@ -15,7 +15,12 @@ function Hero() {
           <div className="pointer-events-none absolute inset-4 border border-wine/20" />
 
           {/* TOP BOW */}
-          <Bow className="absolute left-1/2 top-0 z-30 w-20 -translate-x-1/2 -translate-y-1/2 text-wine" />
+          <img
+            src={bow}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-0 z-30 w-44 -translate-x-1/2 -translate-y-[32%] opacity-90 sm:w-48 lg:w-52"
+          />
 
           {/* CONTENT */}
           <div className="relative grid min-h-[54vh] items-center gap-4 px-10 py-10 md:grid-cols-[57%_43%] lg:px-16">
@@ -64,12 +69,11 @@ function Hero() {
               </div>
 
               {/* HANDWRITTEN NOTE */}
-              <p className="mt-14 ml-[55%] hidden w-fit -rotate-6 font-hand text-3xl leading-[0.95] text-wine/80 lg:block">
+              <p className="ml-[55%] mt-14 hidden w-fit -rotate-6 font-hand text-3xl leading-[0.95] text-wine/80 lg:block">
                 same girl,
                 <br />
                 bigger dreams ♡
               </p>
-
             </div>
 
             {/* RIGHT COLLAGE */}
@@ -130,8 +134,10 @@ function Hero() {
                   </span>
                 </div>
 
-                {/* BOTTOM BOW */}
-                <Bow className="absolute -bottom-3 left-2 z-40 w-11 -rotate-12 text-wine" />
+                {/* SMALL HEART DECORATION */}
+                <span className="pointer-events-none absolute -bottom-3 left-3 z-40 -rotate-12 font-hand text-3xl text-wine/60">
+                  ♡
+                </span>
 
                 {/* CURRENTLY WINDOW */}
                 <div className="absolute -bottom-6 -right-14 z-40 w-36 border border-wine/30 bg-paper shadow-[4px_6px_14px_rgba(104,69,80,0.15)]">
@@ -157,17 +163,14 @@ function Hero() {
                     <p>improving</p>
                     <p className="mt-1">♡</p>
                   </div>
-
                 </div>
 
                 {/* SPARKLE */}
                 <span className="pointer-events-none absolute -right-10 -top-2 text-lg text-wine/70">
                   ✦
                 </span>
-
               </div>
             </div>
-
           </div>
 
           {/* CORNER DETAILS */}
@@ -178,7 +181,6 @@ function Hero() {
           <span className="pointer-events-none absolute bottom-6 right-7 text-xs text-wine/65">
             ♡⸝⸝
           </span>
-
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@ function ProjectCard({ project, index, total }) {
 
   return (
     <article className="relative mx-auto max-w-5xl">
+
       {/* PAPER BEHIND */}
       <div className="absolute inset-4 rotate-[1.5deg] border border-wine/15 bg-cream" />
 
@@ -13,7 +14,8 @@ function ProjectCard({ project, index, total }) {
       <div className="absolute inset-2 -rotate-[1deg] border border-wine/10 bg-pink/20" />
 
       {/* MAIN CARD */}
-      <div className="relative border border-wine/20 bg-paper px-6 py-8 shadow-[8px_10px_0_rgba(104,69,80,0.08)] md:px-10 md:py-10 lg:px-12">
+      <div className="relative border border-wine/20 bg-paper px-6 py-8 text-ink shadow-[8px_10px_0_rgba(104,69,80,0.08)] md:px-10 md:py-10 lg:px-12">
+
         {/* TAPE */}
         <div className="absolute -top-4 left-1/2 h-8 w-28 -translate-x-1/2 -rotate-2 bg-blush/60" />
 
@@ -28,6 +30,7 @@ function ProjectCard({ project, index, total }) {
 
         {/* CONTENT */}
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+
           {/* SCREENSHOT */}
           <div className="relative">
             <div className="border border-wine/15 bg-cream p-3">
@@ -54,9 +57,11 @@ function ProjectCard({ project, index, total }) {
           </div>
 
           {/* INFO */}
-          <div>
+          <div className="text-ink">
+
+            {/* TITLE + STATUS */}
             <div className="mb-5 flex flex-wrap items-center gap-3">
-              <h3 className="font-display text-5xl md:text-6xl">
+              <h3 className="font-display text-5xl text-ink md:text-6xl">
                 {project.title}
               </h3>
 
@@ -67,6 +72,7 @@ function ProjectCard({ project, index, total }) {
               )}
             </div>
 
+            {/* DESCRIPTION */}
             <p className="max-w-md font-typewriter text-sm leading-7 text-ink/70">
               {project.description}
             </p>
@@ -83,7 +89,7 @@ function ProjectCard({ project, index, total }) {
               ))}
             </div>
 
-            {/* PROJECT LINK ONLY */}
+            {/* PROJECT LINK */}
             <div className="mt-8 font-typewriter text-xs">
               <Link
                 to={`/projects/${project.slug}`}
@@ -93,7 +99,7 @@ function ProjectCard({ project, index, total }) {
               </Link>
             </div>
 
-            {/* FUTURE ANIMATION HINT */}
+            {/* DECORATIVE TEXT */}
             <p className="mt-10 font-hand text-2xl text-wine/65">
               keep scrolling ♡
             </p>
