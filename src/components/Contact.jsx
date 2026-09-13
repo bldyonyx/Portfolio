@@ -1,27 +1,96 @@
 function Contact() {
   return (
-    <section id="contact">
-      <p>say hello</p>
+    <section
+      id="contact"
+      className="hero-dots relative overflow-hidden bg-dark px-6 py-24 text-paper lg:px-8 lg:py-32"
+    >
+      <div className="mx-auto max-w-6xl">
 
-      <h2>Let's get in touch ‹𝟹</h2>
+        {/* HEADER */}
+        <div className="mb-16 text-center">
+          <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
+            05 — say hello
+          </p>
 
-      <p>
-        If you'd like to talk about a project, coding, or just say hi,
-        feel free to reach out.
-      </p>
+          <h2 className="font-display text-5xl text-paper md:text-6xl">
+            Let&apos;s get in touch
+          </h2>
 
-      <div>
-        <a href="mailto:my email">
-          Email me
-        </a>
+          <p className="mx-auto mt-4 max-w-lg font-typewriter text-sm leading-6 text-paper/60">
+            If you&apos;d like to talk about a project, coding,
+            <br className="hidden sm:block" />
+            or just say hi, feel free to reach out ♡
+          </p>
+        </div>
 
-        <a
-          href="https://github.com/bldyonyx"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub
-        </a>
+        {/* LETTER */}
+        <div className="relative mx-auto max-w-3xl">
+
+          {/* PAPER BEHIND */}
+          <div className="absolute inset-3 rotate-[1.5deg] border border-paper/10 bg-wine/25" />
+
+          {/* MAIN PAPER */}
+          <div className="relative border border-wine/20 bg-cream px-8 py-12 text-ink shadow-[10px_12px_0_rgba(0,0,0,0.16)] md:px-14 md:py-14">
+
+            {/* TAPE */}
+            <div className="absolute -top-4 left-1/2 h-8 w-28 -translate-x-1/2 -rotate-2 bg-blush/65" />
+
+            {/* LETTER TOP */}
+            <div className="mb-10 flex items-center justify-between border-b border-wine/15 pb-4 font-typewriter text-[10px] uppercase tracking-[0.2em] text-wine/50">
+              <span>to: you ♡</span>
+              <span>from: maya</span>
+            </div>
+
+            {/* LETTER CONTENT */}
+            <div className="mx-auto max-w-xl text-center">
+
+              {/* GREETING */}
+              <p className="font-hand text-3xl text-wine md:text-4xl">
+                hi there 
+              </p>
+
+              {/* MESSAGE */}
+              <p className="mx-auto mt-6 max-w-md font-typewriter text-sm leading-7 text-ink/70">
+                I&apos;m always happy to chat about coding, creative ideas,
+                projects, or anything in between. My inbox is always open.
+              </p>
+
+              {/* EMAIL CTA */}
+              <a
+                href="mailto:my email"
+                className="mt-9 inline-block border border-wine bg-wine px-7 py-3 font-typewriter text-xs text-paper shadow-[4px_5px_0_rgba(104,69,80,0.15)] transition-all duration-300 hover:-translate-y-1 hover:bg-dark"
+              >
+                send me an email →
+              </a>
+
+              {/* GITHUB */}
+              <div className="mt-8 flex justify-center">
+                <a
+                  href="https://github.com/bldyonyx"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border-b border-wine/40 pb-1 font-typewriter text-xs text-wine transition-all duration-300 hover:-translate-y-0.5 hover:border-wine hover:text-dark"
+                >
+                  github ↗
+                </a>
+              </div>
+
+              {/* HANDWRITTEN ENDING */}
+              <p className="mt-12 -rotate-2 font-hand text-3xl text-wine">
+                hope to hear from you ‹𝟹
+              </p>
+            </div>
+
+            {/* DECORATIONS */}
+            <span className="absolute bottom-8 left-8 -rotate-12 font-hand text-3xl text-blush">
+              ♡
+            </span>
+
+            <span className="absolute right-8 top-20 rotate-12 font-hand text-3xl text-wine/45">
+              ʚଓ
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   )

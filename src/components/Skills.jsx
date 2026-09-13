@@ -36,7 +36,7 @@ function Skills() {
         {/* HEADER */}
         <div className="mb-16 text-center">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
-            03 — my toolkit
+            04 — my toolkit
           </p>
 
           <h2 className="font-display text-5xl md:text-6xl">
