@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
   return (
-    <nav className="hero-dots relative z-50 bg-dark text-paper">
+    <nav className="hero-dots sticky top-0 z-50 bg-dark/95 text-paper backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="flex h-[58px] items-center justify-between border-b border-paper/15">
