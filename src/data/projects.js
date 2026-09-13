@@ -6,7 +6,7 @@ const projects = [
       'A playful color palette generator for creating harmonious color combinations based on different moods or a starting color.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Vite'],
     github: 'https://github.com/bldyonyx/Colorly',
-    demo: '',
+    demo: 'https://bldyonyx.github.io/Colorly/',
   },
   {
     title: 'Taskly',
@@ -15,7 +15,7 @@ const projects = [
       'A task management app focused on making everyday organization simple and intuitive. Currently a work in progress.',
     tech: ['React', 'JavaScript', 'CSS', 'Vite'],
     github: 'https://github.com/bldyonyx/Taskly',
-    demo: '',
+    demo: 'https://bldyonyx.github.io/Taskly/',
     status: 'work in progress',
   },
 ]
