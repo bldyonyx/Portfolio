@@ -1,3 +1,6 @@
+import colorlyPreview from '../assets/images/projects/colorly-preview.png'
+import tasklyPreview from '../assets/images/projects/taskly-preview.png'
+
 const projects = [
   {
     title: 'Colorly',
@@ -7,6 +10,7 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript', 'Vite'],
     github: 'https://github.com/bldyonyx/Colorly',
     demo: 'https://bldyonyx.github.io/Colorly/',
+    image: colorlyPreview,
   },
   {
     title: 'Taskly',
@@ -16,6 +20,7 @@ const projects = [
     tech: ['React', 'JavaScript', 'CSS', 'Vite'],
     github: 'https://github.com/bldyonyx/Taskly',
     demo: 'https://bldyonyx.github.io/Taskly/',
+    image: tasklyPreview,
     status: 'work in progress',
   },
 ]

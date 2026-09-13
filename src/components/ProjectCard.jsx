@@ -20,6 +20,7 @@ function ProjectCard({ project, index, total }) {
         {/* PROJECT COUNT */}
         <div className="mb-8 flex items-center justify-between font-typewriter text-[10px] uppercase tracking-[0.25em] text-wine/55">
           <span>project {number}</span>
+
           <span>
             {number} / {totalProjects}
           </span>
@@ -30,10 +31,12 @@ function ProjectCard({ project, index, total }) {
           {/* SCREENSHOT */}
           <div className="relative">
             <div className="border border-wine/15 bg-cream p-3">
-              <div className="flex aspect-[4/3] items-center justify-center overflow-hidden bg-pink/30">
-                <span className="font-typewriter text-xs uppercase tracking-[0.2em] text-wine/55">
-                  project screenshot
-                </span>
+              <div className="aspect-[4/3] overflow-hidden bg-pink/30">
+                <img
+                  src={project.image}
+                  alt={`${project.title} project preview`}
+                  className="h-full w-full object-cover object-center"
+                />
               </div>
             </div>
 
@@ -80,23 +83,14 @@ function ProjectCard({ project, index, total }) {
               ))}
             </div>
 
-            {/* LINKS */}
-            <div className="mt-8 flex items-center gap-6 font-typewriter text-xs">
+            {/* PROJECT LINK ONLY */}
+            <div className="mt-8 font-typewriter text-xs">
               <Link
                 to={`/projects/${project.slug}`}
                 className="border-b border-wine pb-1 text-wine transition-all duration-300 hover:border-pink hover:text-pink"
               >
                 view project →
               </Link>
-
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noreferrer"
-                className="text-ink/60 transition-colors duration-300 hover:text-wine"
-              >
-                github ↗
-              </a>
             </div>
 
             {/* FUTURE ANIMATION HINT */}
