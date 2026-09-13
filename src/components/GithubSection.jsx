@@ -1,3 +1,5 @@
+import GithubCalendar from './GithubCalendar'
+
 function GithubSection() {
   return (
     <section
@@ -9,7 +11,7 @@ function GithubSection() {
         {/* HEADER */}
         <div className="mb-14">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
-            03 — coding lately
+            04 — coding lately
           </p>
 
           <h2 className="font-display text-5xl text-paper md:text-6xl">
@@ -17,8 +19,9 @@ function GithubSection() {
           </h2>
 
           <p className="mt-4 max-w-lg font-typewriter text-sm leading-6 text-paper/60">
-            a little snapshot of what I&apos;ve been building,
-            learning, and experimenting with lately ♡
+            a little look at my recent GitHub activity,
+            <br className="hidden sm:block" />
+            one contribution at a time ♡
           </p>
         </div>
 
@@ -46,10 +49,11 @@ function GithubSection() {
             </div>
 
             {/* WINDOW CONTENT */}
-            <div className="grid gap-10 px-8 py-10 md:px-12 md:py-12 lg:grid-cols-[1.35fr_0.65fr]">
+            <div className="grid gap-10 px-8 py-10 md:px-12 md:py-12 lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-10">
 
-              {/* LEFT — CONTRIBUTIONS */}
-              <div>
+              {/* LEFT */}
+              <div className="min-w-0">
+
                 <div className="mb-6">
                   <p className="font-typewriter text-[10px] uppercase tracking-[0.25em] text-wine/55">
                     contribution activity
@@ -60,27 +64,17 @@ function GithubSection() {
                   </p>
                 </div>
 
-                {/* GRAPH AREA */}
-                <div className="border border-wine/15 bg-cream p-5">
-                  <div className="flex min-h-48 items-center justify-center border border-dashed border-wine/20 bg-paper/60 px-6 text-center">
-                    <div>
-                      <p className="font-typewriter text-xs text-wine/55">
-                        GitHub contribution graph
-                      </p>
-
-                      <p className="mt-2 font-typewriter text-[10px] text-wine/35">
-                        live activity coming here ♡
-                      </p>
-                    </div>
-                  </div>
+                {/* CUSTOM LIVE CALENDAR */}
+                <div className="border border-wine/15 bg-cream px-4 py-5">
+                  <GithubCalendar username="bldyonyx" />
                 </div>
               </div>
 
-              {/* RIGHT — INFO */}
+              {/* RIGHT */}
               <div className="relative space-y-6">
 
-                {/* USER CARD */}
-                <div className="rotate-[1deg] border border-wine/20 bg-cream p-6 shadow-[5px_6px_0_rgba(104,69,80,0.08)]">
+                {/* PROFILE */}
+                <div className="rotate-[1deg] border border-wine/20 bg-cream p-5 shadow-[5px_6px_0_rgba(104,69,80,0.08)]">
                   <p className="font-typewriter text-[10px] uppercase tracking-[0.25em] text-wine/50">
                     profile
                   </p>
@@ -94,12 +88,14 @@ function GithubSection() {
                   </p>
                 </div>
 
-                {/* NOTE */}
-                <div className="-rotate-[2deg] border border-wine/15 bg-pink/35 px-6 py-5">
-                  <p className="font-hand text-2xl leading-7 text-wine">
-                    progress over
-                    <br />
-                    perfection ♡
+                {/* JOURNEY NOTE */}
+                <div className="-rotate-[2deg] border border-wine/15 bg-pink/35 px-5 py-5">
+                  <p className="mb-2 font-typewriter text-[9px] uppercase tracking-[0.22em] text-wine/45">
+                    little timeline
+                  </p>
+
+                  <p className="font-hand text-[1.65rem] leading-7 text-wine">
+                    joined GitHub in August ♡
                   </p>
                 </div>
 
@@ -113,9 +109,11 @@ function GithubSection() {
                   view my GitHub ↗
                 </a>
 
+                {/* DECORATION */}
                 <span className="absolute -bottom-4 -right-2 rotate-12 font-hand text-4xl text-wine">
                   ᛝ
                 </span>
+
               </div>
             </div>
           </div>
