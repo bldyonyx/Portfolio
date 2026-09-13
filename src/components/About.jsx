@@ -48,7 +48,8 @@ function About() {
                   <p>
                     I&apos;m a student who recently found her way into
                     front-end development. I started learning by building small
-                    projects and quickly discovered how much I enjoy turning an
+                    projects in class and outside of class 
+                    and quickly discovered how much I enjoy turning an
                     idea into something I can actually see and interact with.
                   </p>
 
@@ -69,7 +70,7 @@ function About() {
                 {/* LANGUAGES */}
                 <div className="rotate-[1deg] border border-wine/20 bg-cream p-6 shadow-[5px_6px_0_rgba(104,69,80,0.08)]">
                   <p className="mb-5 font-typewriter text-[10px] uppercase tracking-[0.25em] text-wine/65">
-                    languages
+                    languages i speak
                   </p>
 
                   <div className="space-y-4 font-typewriter text-sm">
@@ -83,6 +84,13 @@ function About() {
                     <div className="flex items-center justify-between gap-6">
                       <span>English</span>
                       <span className="text-wine/60">fluent</span>
+                    </div>
+
+                    <div className="border-t border-wine/10" />
+
+                    <div className="flex items-center justify-between gap-6">
+                      <span>German</span>
+                      <span className="text-wine/60">learning</span>
                     </div>
                   </div>
                 </div>
