@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowUp,
+  ExternalLink,
+  GitBranch,
+} from 'lucide-react'
+
 import projects from '../data/projects'
 import ProjectShowcase from '../components/ProjectShowcase'
 
 function ProjectDetails() {
   const { slug } = useParams()
+  const navigate = useNavigate()
 
   const project = projects.find((project) => project.slug === slug)
 
@@ -12,7 +21,6 @@ function ProjectDetails() {
 
   /*
     Always start a project page from the top.
-    This prevents React Router from keeping the previous scroll position.
   */
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -29,12 +37,33 @@ function ProjectDetails() {
 
     handleScroll()
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    })
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  /*
+    Return to the home page,
+    then scroll directly to Projects.
+  */
+  const goBackToProjects = () => {
+    navigate('/')
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document
+          .getElementById('projects')
+          ?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          })
+      })
+    })
+  }
 
   if (!project) {
     return (
@@ -49,6 +78,8 @@ function ProjectDetails() {
             className="
               mt-6
               inline-flex
+              items-center
+              gap-2
               border
               border-paper/20
               bg-paper
@@ -63,7 +94,13 @@ function ProjectDetails() {
               hover:bg-pink
             "
           >
-            ← back home
+            <ArrowLeft
+              size={14}
+              strokeWidth={1.7}
+              aria-hidden="true"
+            />
+
+            <span>back home</span>
           </Link>
         </div>
       </main>
@@ -202,8 +239,10 @@ function ProjectDetails() {
           {/* TOP NAV */}
           <div className="flex items-center justify-between gap-5">
 
-            <Link
-              to="/#projects"
+            {/* BACK TO PROJECTS */}
+            <button
+              type="button"
+              onClick={goBackToProjects}
               className="
                 inline-flex
                 items-center
@@ -223,22 +262,28 @@ function ProjectDetails() {
                 hover:bg-pink
               "
             >
-              <span>←</span>
+              <ArrowLeft
+                size={13}
+                strokeWidth={1.7}
+                aria-hidden="true"
+              />
 
               <span>
                 back to projects
               </span>
-            </Link>
+            </button>
 
-            <p className="
-              hidden
-              font-typewriter
-              text-[10px]
-              uppercase
-              tracking-[0.28em]
-              text-pink/45
-              sm:block
-            ">
+            <p
+              className="
+                hidden
+                font-typewriter
+                text-[10px]
+                uppercase
+                tracking-[0.28em]
+                text-pink/45
+                sm:block
+              "
+            >
               {copy.category}
             </p>
           </div>
@@ -246,65 +291,75 @@ function ProjectDetails() {
           {/* MAIN INTRO */}
           <div className="mt-20 lg:mt-24">
 
-            <p className="
-              font-typewriter
-              text-[11px]
-              uppercase
-              tracking-[0.3em]
-              text-pink/75
-            ">
+            <p
+              className="
+                font-typewriter
+                text-[11px]
+                uppercase
+                tracking-[0.3em]
+                text-pink/75
+              "
+            >
               project case study
             </p>
 
-            <div className="
-              mt-7
-              grid
-              gap-10
-              lg:grid-cols-[0.8fr_1.2fr]
-              lg:items-center
-              lg:gap-10
-            ">
+            <div
+              className="
+                mt-7
+                grid
+                gap-10
+                lg:grid-cols-[0.8fr_1.2fr]
+                lg:items-center
+                lg:gap-10
+              "
+            >
 
               {/* LEFT SIDE */}
               <div>
-                <h1 className="
-                  font-display
-                  text-7xl
-                  leading-[0.82]
-                  text-paper
-                  sm:text-8xl
-                  lg:text-[8rem]
-                ">
+                <h1
+                  className="
+                    font-display
+                    text-7xl
+                    leading-[0.82]
+                    text-paper
+                    sm:text-8xl
+                    lg:text-[8rem]
+                  "
+                >
                   {project.title}
                 </h1>
 
                 {project.status && (
-                  <span className="
-                    mt-6
-                    inline-block
-                    -rotate-2
-                    border
-                    border-pink/25
-                    px-3
-                    py-1.5
-                    font-typewriter
-                    text-[9px]
-                    uppercase
-                    tracking-[0.2em]
-                    text-pink
-                  ">
+                  <span
+                    className="
+                      mt-6
+                      inline-block
+                      -rotate-2
+                      border
+                      border-pink/25
+                      px-3
+                      py-1.5
+                      font-typewriter
+                      text-[9px]
+                      uppercase
+                      tracking-[0.2em]
+                      text-pink
+                    "
+                  >
                     {project.status}
                   </span>
                 )}
 
-                <p className="
-                  mt-7
-                  -rotate-2
-                  font-hand
-                  text-3xl
-                  text-pink/75
-                  lg:text-4xl
-                ">
+                <p
+                  className="
+                    mt-7
+                    -rotate-2
+                    font-hand
+                    text-3xl
+                    text-pink/75
+                    lg:text-4xl
+                  "
+                >
                   {copy.note}
                 </p>
               </div>
@@ -313,50 +368,58 @@ function ProjectDetails() {
               <div className="relative lg:pl-9">
 
                 {/* SEPARATOR */}
-                <div className="
-                  absolute
-                  bottom-0
-                  left-0
-                  top-0
-                  hidden
-                  w-px
-                  bg-paper/15
-                  lg:block
-                " />
+                <div
+                  className="
+                    absolute
+                    bottom-0
+                    left-0
+                    top-0
+                    hidden
+                    w-px
+                    bg-paper/15
+                    lg:block
+                  "
+                />
 
                 {/* DOT */}
-                <span className="
-                  absolute
-                  -left-[5px]
-                  top-1
-                  hidden
-                  h-2.5
-                  w-2.5
-                  rounded-full
-                  bg-pink
-                  lg:block
-                " />
+                <span
+                  className="
+                    absolute
+                    -left-[5px]
+                    top-1
+                    hidden
+                    h-2.5
+                    w-2.5
+                    rounded-full
+                    bg-pink
+                    lg:block
+                  "
+                />
 
-                <p className="
-                  font-typewriter
-                  text-[11px]
-                  uppercase
-                  tracking-[0.28em]
-                  text-pink/75
-                ">
+                <p
+                  className="
+                    font-typewriter
+                    text-[11px]
+                    uppercase
+                    tracking-[0.28em]
+                    text-pink/75
+                  "
+                >
                   {copy.question}
                 </p>
 
-                <p className="
-                  mt-6
-                  max-w-2xl
-                  font-typewriter
-                  text-base
-                  leading-8
-                  text-paper/75
-                  lg:text-[17px]
-                  lg:leading-9
-                ">
+                <p
+                  className="
+                    mt-6
+                    max-w-2xl
+                    font-typewriter
+                    text-base
+                    leading-8
+                    text-paper/75
+                    lg:text-[17px]
+                    lg:leading-9
+                  "
+                >
                   {copy.intro}
                 </p>
 
@@ -383,20 +446,26 @@ function ProjectDetails() {
                 </div>
 
                 {/* LINKS */}
-                <div className="
-                  mt-8
-                  flex
-                  flex-wrap
-                  gap-7
-                  font-typewriter
-                  text-[11px]
-                ">
+                <div
+                  className="
+                    mt-8
+                    flex
+                    flex-wrap
+                    gap-7
+                    font-typewriter
+                    text-[11px]
+                  "
+                >
 
+                  {/* GITHUB */}
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
                     className="
+                      inline-flex
+                      items-center
+                      gap-2
                       border-b
                       border-paper/45
                       pb-1.5
@@ -407,15 +476,27 @@ function ProjectDetails() {
                       hover:text-pink
                     "
                   >
-                    GitHub ↗
+                    <GitBranch
+                      size={14}
+                      strokeWidth={1.7}
+                      aria-hidden="true"
+                    />
+
+                    <span>
+                      GitHub
+                    </span>
                   </a>
 
+                  {/* LIVE SITE */}
                   {project.demo && (
                     <a
                       href={project.demo}
                       target="_blank"
                       rel="noreferrer"
                       className="
+                        inline-flex
+                        items-center
+                        gap-2
                         border-b
                         border-paper/45
                         pb-1.5
@@ -426,7 +507,15 @@ function ProjectDetails() {
                         hover:text-pink
                       "
                     >
-                      live site ↗
+                      <ExternalLink
+                        size={14}
+                        strokeWidth={1.7}
+                        aria-hidden="true"
+                      />
+
+                      <span>
+                        live site
+                      </span>
                     </a>
                   )}
                 </div>
@@ -434,26 +523,30 @@ function ProjectDetails() {
             </div>
 
             {/* EXPLORE INDICATOR */}
-            <div className="
-              mt-14
-              flex
-              items-center
-              gap-4
-              font-typewriter
-              text-[10px]
-              uppercase
-              tracking-[0.24em]
-              text-paper/35
-            ">
+            <div
+              className="
+                mt-14
+                flex
+                items-center
+                gap-4
+                font-typewriter
+                text-[10px]
+                uppercase
+                tracking-[0.24em]
+                text-paper/35
+              "
+            >
               <span className="h-px w-14 bg-paper/20" />
 
               <span>
                 explore project
               </span>
 
-              <span>
-                ↓
-              </span>
+              <ArrowDown
+                size={13}
+                strokeWidth={1.7}
+                aria-hidden="true"
+              />
             </div>
           </div>
         </div>
@@ -472,61 +565,42 @@ function ProjectDetails() {
       ====================================================== */}
 
       <section className="px-6 py-20 lg:px-8">
-        <div className="
-          mx-auto
-          flex
-          max-w-6xl
-          flex-col
-          gap-8
-          border-t
-          border-paper/15
-          pt-12
-          sm:flex-row
-          sm:items-end
-          sm:justify-between
-        ">
-
-          <div>
-            <p className="
+        <div
+          className="
+            mx-auto
+            max-w-6xl
+            border-t
+            border-paper/15
+            pt-12
+          "
+        >
+          <p
+            className="
               font-typewriter
               text-[9px]
               uppercase
               tracking-[0.26em]
               text-pink/60
-            ">
-              end of project
-            </p>
+            "
+          >
+            end of project
+          </p>
 
-            <p className="
+          <p
+            className="
               mt-3
               font-hand
               text-3xl
               text-paper
-            ">
-              thanks for looking ♡
-            </p>
-          </div>
-
-          <Link
-            to="/#projects"
-            className="
-              font-typewriter
-              text-[10px]
-              text-paper/60
-              transition-colors
-              duration-300
-              hover:text-pink
             "
           >
-            ← see all projects
-          </Link>
+            thanks for looking ♡
+          </p>
         </div>
       </section>
 
       {/* ======================================================
           BACK TO TOP
-          Hidden at the top of the page.
-          Appears after scrolling 450px.
       ====================================================== */}
 
       <button
@@ -546,8 +620,6 @@ function ProjectDetails() {
           border
           border-paper/20
           bg-paper
-          font-typewriter
-          text-sm
           text-wine
           shadow-[4px_5px_0_rgba(0,0,0,0.16)]
           transition-all
@@ -563,7 +635,11 @@ function ProjectDetails() {
           }
         `}
       >
-        ↑
+        <ArrowUp
+          size={16}
+          strokeWidth={1.7}
+          aria-hidden="true"
+        />
       </button>
     </main>
   )

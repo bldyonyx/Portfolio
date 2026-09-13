@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Pause, Play } from 'lucide-react'
 import gsap from 'gsap'
 
 function ProjectShowcase({ slides }) {
@@ -17,10 +18,6 @@ function ProjectShowcase({ slides }) {
 
   const activeSlide = slides[activeIndex]
 
-  /*
-    Animate the NEW content into place.
-    Only the screenshot + title/description move.
-  */
   useLayoutEffect(() => {
     const image = imageRef.current
     const changingText = changingTextRef.current
@@ -73,10 +70,6 @@ function ProjectShowcase({ slides }) {
     }
   }, [activeIndex])
 
-  /*
-    Animate the CURRENT content out,
-    then switch to the next slide.
-  */
   const changeSlide = (nextIndex, direction = 1) => {
     if (animatingRef.current) return
     if (nextIndex === activeIndexRef.current) return
@@ -122,9 +115,6 @@ function ProjectShowcase({ slides }) {
     )
   }
 
-  /*
-    Automatic next slide.
-  */
   const goToNextSlide = () => {
     if (animatingRef.current) return
 
@@ -134,9 +124,6 @@ function ProjectShowcase({ slides }) {
     changeSlide(nextIndex, 1)
   }
 
-  /*
-    Clicking a progress dot.
-  */
   const goToSlide = (index) => {
     const current = activeIndexRef.current
 
@@ -147,9 +134,6 @@ function ProjectShowcase({ slides }) {
     changeSlide(index, direction)
   }
 
-  /*
-    Autoplay every 3 seconds.
-  */
   useEffect(() => {
     clearInterval(intervalRef.current)
 
@@ -166,9 +150,6 @@ function ProjectShowcase({ slides }) {
     }
   }, [slides.length, isPaused])
 
-  /*
-    GSAP cleanup.
-  */
   useEffect(() => {
     return () => {
       gsap.killTweensOf([
@@ -228,16 +209,14 @@ function ProjectShowcase({ slides }) {
               </span>
             </div>
 
-            {/* CLIP ONLY THE ANIMATED CONTENT */}
+            {/* ANIMATED CONTENT */}
             <div className="overflow-hidden">
-
-              {/* CONTENT */}
               <div className="grid items-center gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-12">
 
                 {/* IMAGE AREA */}
                 <div className="relative overflow-hidden border border-wine/15 bg-cream">
 
-                  {/* SCREENSHOT MOVES */}
+                  {/* SCREENSHOT */}
                   <div ref={imageRef}>
                     <img
                       src={activeSlide.image}
@@ -246,7 +225,7 @@ function ProjectShowcase({ slides }) {
                     />
                   </div>
 
-                  {/* IMAGE LABEL — FIXED POSITION */}
+                  {/* FIXED IMAGE LABEL */}
                   <span className="absolute bottom-3 right-3 z-10 bg-paper/90 px-2 py-1 font-typewriter text-[8px] uppercase tracking-[0.18em] text-wine/60">
                     {activeSlide.eyebrow}
                   </span>
@@ -255,22 +234,14 @@ function ProjectShowcase({ slides }) {
                 {/* RIGHT SIDE */}
                 <div>
 
-                  {/*
-                    FIXED EYEBROW AREA
-
-                    "palette mood · 01"
-                    "custom palette · 04"
-
-                    can change text, but this area always
-                    occupies exactly the same height.
-                  */}
+                  {/* FIXED EYEBROW AREA */}
                   <div className="flex h-5 items-start">
                     <p className="font-typewriter text-[9px] uppercase leading-none tracking-[0.26em] text-wine/45">
                       {activeSlide.eyebrow}
                     </p>
                   </div>
 
-                  {/* ONLY TITLE + DESCRIPTION MOVE */}
+                  {/* CHANGING TEXT */}
                   <div ref={changingTextRef}>
                     <h3 className="mt-3 font-display text-4xl text-wine md:text-5xl">
                       {activeSlide.title}
@@ -281,7 +252,7 @@ function ProjectShowcase({ slides }) {
                     </p>
                   </div>
 
-                  {/* CONTROLS — FIXED */}
+                  {/* CONTROLS */}
                   <div className="mt-8 flex flex-wrap items-center gap-4">
 
                     {/* PROGRESS DOTS */}
@@ -293,12 +264,8 @@ function ProjectShowcase({ slides }) {
                           onClick={() => goToSlide(index)}
                           aria-label={`Show ${slide.title}`}
                           className={`
-                            block
-                            h-2.5
-                            rounded-full
-                            transition-all
-                            duration-500
-
+                            block h-2.5 rounded-full
+                            transition-all duration-500
                             ${
                               activeIndex === index
                                 ? 'w-8 bg-wine'
@@ -312,7 +279,7 @@ function ProjectShowcase({ slides }) {
                     {/* DIVIDER */}
                     <span className="h-4 w-px bg-wine/15" />
 
-                    {/* PAUSE / PLAY */}
+                    {/* PLAY / PAUSE */}
                     <button
                       type="button"
                       onClick={togglePause}
@@ -322,30 +289,32 @@ function ProjectShowcase({ slides }) {
                           : 'Pause slideshow'
                       }
                       className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        border
-                        border-wine/20
-                        bg-cream
-                        px-3
-                        py-2
-                        font-typewriter
-                        text-[9px]
-                        uppercase
-                        tracking-[0.16em]
+                        inline-flex items-center gap-2
+                        border border-wine/20
+                        bg-cream px-3 py-2
+                        font-typewriter text-[9px]
+                        uppercase tracking-[0.16em]
                         text-wine/65
-                        transition-all
-                        duration-300
+                        transition-all duration-300
                         hover:-translate-y-0.5
                         hover:border-wine/35
                         hover:bg-pink/30
                         hover:text-wine
                       "
                     >
-                      <span className="text-[10px]">
-                        {isPaused ? '▶' : 'Ⅱ'}
-                      </span>
+                      {isPaused ? (
+                        <Play
+                          size={13}
+                          strokeWidth={1.8}
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <Pause
+                          size={13}
+                          strokeWidth={1.8}
+                          aria-hidden="true"
+                        />
+                      )}
 
                       <span>
                         {isPaused ? 'play' : 'pause'}
@@ -353,14 +322,14 @@ function ProjectShowcase({ slides }) {
                     </button>
                   </div>
 
-                  {/* STATUS — FIXED */}
+                  {/* STATUS */}
                   <p className="mt-4 font-typewriter text-[8px] uppercase tracking-[0.18em] text-wine/35">
                     {isPaused
                       ? 'showcase paused ♡'
                       : 'changes automatically every 3 seconds'}
                   </p>
 
-                  {/* DECORATION — FIXED */}
+                  {/* DECORATION */}
                   <p className="mt-8 -rotate-2 font-hand text-2xl text-wine/65">
                     little details ♡
                   </p>
