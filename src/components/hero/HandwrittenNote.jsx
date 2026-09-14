@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-const handwrittenText = 'same girl,\nbigger dreams ♡'
+const handwrittenText = 'same girl,\nbigger dreams'
 
 function HandwrittenNote() {
   const [typedText, setTypedText] = useState('')

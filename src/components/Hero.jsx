@@ -1,8 +1,6 @@
 import HeroIntro from './hero/HeroIntro'
 import HeroCollage from './hero/HeroCollage'
 
-import bow from '../assets/decorations/bow.png'
-
 function Hero() {
   return (
     <section
@@ -16,26 +14,6 @@ function Hero() {
 
           {/* INNER BORDER */}
           <div className="pointer-events-none absolute inset-4 border border-wine/20" />
-
-          {/* TOP BOW */}
-          <img
-            src={bow}
-            alt=""
-            aria-hidden="true"
-            className="
-              pointer-events-none
-              absolute
-              left-1/2
-              top-0
-              z-30
-              w-40
-              -translate-x-1/2
-              -translate-y-[32%]
-              opacity-90
-              sm:w-44
-              lg:w-52
-            "
-          />
 
           {/* CONTENT */}
           <div

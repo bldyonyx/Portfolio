@@ -102,9 +102,6 @@ function HeroCollage() {
             take time
           </p>
 
-          <span className="mt-1 block text-[10px] text-wine">
-            ♡
-          </span>
         </div>
 
         {/* SMALL HEART */}

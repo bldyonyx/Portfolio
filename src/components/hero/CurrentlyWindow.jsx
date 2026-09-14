@@ -117,9 +117,6 @@ function CurrentlyWindow() {
             learning in progress
           </span>
 
-          <span className="ml-auto font-hand text-xs text-wine/50">
-            ♡
-          </span>
         </div>
       </div>
     </div>
