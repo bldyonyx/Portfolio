@@ -50,7 +50,7 @@ function AnnotatedText({
             h-[0.55em]
             w-[calc(100%+0.24em)]
             origin-left
-            -rotate-[1deg]
+            -rotate-1
             bg-blush/35
           "
           style={{
