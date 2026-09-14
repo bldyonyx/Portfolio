@@ -191,30 +191,31 @@ function ProjectShowcase({ slides }) {
             {/* CONTENT */}
             <div className="overflow-hidden">
               <div className="grid gap-9 lg:grid-cols-[1.22fr_0.78fr] lg:items-stretch lg:gap-14">
+
                 {/* IMAGE AREA */}
                 <div className="relative self-start overflow-hidden border border-wine/15 bg-cream">
                   <div
                     ref={imageRef}
                     className="w-full overflow-hidden"
                   >
-                    <img
-                      src={activeSlide.image}
-                      alt={activeSlide.title}
-                      className={`
-                        block
-                        max-h-[500px]
-                        w-full
-                        object-contain
-                        transition-transform
-                        duration-700
-                        ease-out
-                        ${
-                          isPaused
-                            ? 'cursor-zoom-in hover:scale-[1.035]'
-                            : ''
-                        }
-                      `}
-                    />
+                  <img
+                    src={activeSlide.image}
+                    alt={activeSlide.title}
+                    className={`
+                      block
+                      max-h-[500px]
+                      w-full
+                      object-contain
+                      transition-transform
+                      duration-700
+                      ease-out
+                      ${
+                        isPaused
+                          ? 'hover:scale-[1.07]'
+                          : ''
+                      }
+                    `}
+                  />
                   </div>
 
                   {/* IMAGE LABEL */}
