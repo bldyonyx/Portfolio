@@ -1,3 +1,5 @@
+import AnnotatedText from './AnnotatedText'
+
 function About() {
   return (
     <section
@@ -18,9 +20,10 @@ function About() {
 
         {/* ABOUT WINDOW */}
         <div className="relative mx-auto max-w-5xl">
-          {/* paper behind */}
+          {/* PAPER BEHIND */}
           <div className="absolute inset-3 rotate-[1.5deg] border border-paper/10 bg-wine/25" />
 
+          {/* WINDOW */}
           <div className="relative overflow-hidden border border-paper/20 bg-paper text-ink shadow-[10px_12px_0_rgba(0,0,0,0.16)]">
             {/* WINDOW BAR */}
             <div className="flex items-center justify-between border-b border-wine/20 bg-pink/35 px-5 py-3">
@@ -46,17 +49,26 @@ function About() {
 
                 <div className="space-y-6 font-typewriter text-sm leading-7 text-ink/75 md:text-base md:leading-8">
                   <p>
-                    I&apos;m a student who recently found her way into
-                    front-end development. I started learning by building small
-                    projects in class and outside of class 
-                    and quickly discovered how much I enjoy turning an
-                    idea into something I can actually see and interact with.
+                    I&apos;m a student who recently found her way into{' '}
+                    <AnnotatedText type="underline">
+                      front-end development
+                    </AnnotatedText>
+                    . I started learning by building small projects in class
+                    and outside of class and quickly discovered how much I
+                    enjoy turning an idea into something I can actually see
+                    and interact with.
                   </p>
 
                   <p>
-                    I especially love the creative side of coding :
-                    experimenting with colors, layouts, and little details until
-                    a project starts to feel like my own.
+                    I especially love the{' '}
+                    <AnnotatedText
+                      type="highlight"
+                      delay={120}
+                    >
+                      creative side of coding
+                    </AnnotatedText>
+                    : experimenting with colors, layouts, and little details
+                    until a project starts to feel like my own.
                   </p>
                 </div>
 
