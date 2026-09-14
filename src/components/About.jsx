@@ -1,4 +1,5 @@
 import AnnotatedText from './AnnotatedText'
+import LocalTimeCard from './about/LocalTimeCard'
 
 function About() {
   return (
@@ -72,6 +73,7 @@ function About() {
                   </p>
                 </div>
 
+                {/* HANDWRITTEN NOTE */}
                 <p className="mt-8 font-hand text-3xl text-wine">
                   learning as I go ♡
                 </p>
@@ -88,36 +90,36 @@ function About() {
                   <div className="space-y-4 font-typewriter text-sm">
                     <div className="flex items-center justify-between gap-6">
                       <span>French</span>
-                      <span className="text-wine/60">native</span>
+                      <span className="text-wine/60">
+                        native
+                      </span>
                     </div>
 
                     <div className="border-t border-wine/10" />
 
                     <div className="flex items-center justify-between gap-6">
                       <span>English</span>
-                      <span className="text-wine/60">fluent</span>
+                      <span className="text-wine/60">
+                        fluent
+                      </span>
                     </div>
 
                     <div className="border-t border-wine/10" />
 
                     <div className="flex items-center justify-between gap-6">
                       <span>German</span>
-                      <span className="text-wine/60">learning</span>
+                      <span className="text-wine/60">
+                        learning
+                      </span>
                     </div>
                   </div>
                 </div>
 
-                {/* LITTLE NOTE */}
-                <div className="-rotate-[2deg] border border-wine/15 bg-pink/35 px-6 py-5">
-                  <p className="font-hand text-2xl leading-7 text-wine">
-                    curious mind,
-                    <br />
-                    creative heart ♡
-                  </p>
-                </div>
+                {/* LOCAL TIME */}
+                <LocalTimeCard />
 
                 {/* DECORATIVE HEART */}
-                <span className="absolute -bottom-5 -right-2 rotate-12 font-hand text-4xl text-pink">
+                <span className="pointer-events-none absolute -bottom-5 -right-2 rotate-12 font-hand text-4xl text-pink">
                   ♡
                 </span>
               </div>
