@@ -161,3 +161,18 @@ body {
     transform: translateX(4px);
   }
 }
+
+/* ========================================
+   PROJECT DETAILS
+======================================== */
+
+@keyframes project-explore-arrow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
