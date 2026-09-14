@@ -16,7 +16,7 @@ function GithubSection() {
       id="github"
       className="hero-dots bg-dark px-6 py-24 text-paper lg:px-8 lg:py-32"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-5xl min-[1800px]:max-w-6xl">
         {/* HEADER */}
         <div className="mb-14">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">

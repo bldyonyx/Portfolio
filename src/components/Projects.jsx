@@ -102,7 +102,7 @@ function Projects() {
         lg:pt-32
       "
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl min-[1800px]:max-w-7xl">
         <div className="mb-16 text-center md:mb-20">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
             02 — selected work
@@ -119,7 +119,7 @@ function Projects() {
           </p>
         </div>
 
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-5xl min-[1800px]:max-w-6xl">
           {projects.map((project, index) => (
             <div
               key={project.slug}

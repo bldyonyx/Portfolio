@@ -43,7 +43,7 @@ function CurrentlyWindow() {
         shadow-[5px_7px_16px_rgba(104,69,80,0.16)]
         sm:-right-10
         lg:-bottom-5
-        lg:-right-14
+        lg:right-0
       "
     >
       {/* WINDOW HEADER */}

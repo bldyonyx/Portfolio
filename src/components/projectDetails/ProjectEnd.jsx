@@ -88,7 +88,7 @@ function ProjectEnd() {
       ref={sectionRef}
       className="px-6 pb-24 pt-16 lg:px-8 lg:pb-28 lg:pt-20"
     >
-      <div className="mx-auto max-w-6xl border-t border-paper/15 pt-14">
+      <div className="mx-auto max-w-6xl border-t border-paper/15 pt-14 min-[1800px]:max-w-7xl">
         <div className="flex flex-col items-center text-center">
           <p
             data-project-end-label

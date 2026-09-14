@@ -6,7 +6,7 @@ function ProjectCard({ project, index, total }) {
   const totalProjects = String(total).padStart(2, '0')
 
   return (
-    <article className="relative mx-auto max-w-5xl">
+    <article className="relative mx-auto max-w-5xl min-[1800px]:max-w-6xl">
       {/* PAPER BEHIND */}
       <div className="absolute inset-4 rotate-[1.25deg] border border-wine/15 bg-cream" />
 

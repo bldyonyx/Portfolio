@@ -11,9 +11,14 @@ function HeroCollage() {
         w-full
         max-w-55
         sm:max-w-61.25
-        lg:ml-8
+        lg:mx-0
         lg:max-w-66.25
+        lg:justify-self-end
+        lg:-translate-x-12
         lg:-translate-y-1
+        xl:-translate-x-20
+        2xl:-translate-x-24
+        min-[1800px]:!-translate-x-28
       "
     >
       <div className="relative">
@@ -91,7 +96,8 @@ function HeroCollage() {
             sm:-right-10
             sm:px-4
             sm:py-3
-            lg:-right-12
+            lg:right-0
+            xl:-right-1
           "
         >
           <p className="font-typewriter text-[9px] leading-[1.55] text-ink sm:text-[10px]">
@@ -101,7 +107,6 @@ function HeroCollage() {
             <br />
             take time
           </p>
-
         </div>
 
         {/* SMALL HEART */}
@@ -112,7 +117,18 @@ function HeroCollage() {
         <CurrentlyWindow />
 
         {/* SPARKLE */}
-        <span className="pointer-events-none absolute -right-6 -top-2 text-lg text-wine/70 sm:-right-10">
+        <span
+          className="
+            pointer-events-none
+            absolute
+            -right-6
+            -top-2
+            text-lg
+            text-wine/70
+            sm:-right-10
+            lg:right-0
+          "
+        >
           ✦
         </span>
       </div>

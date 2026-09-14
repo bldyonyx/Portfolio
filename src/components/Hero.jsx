@@ -32,11 +32,13 @@ function Hero() {
                 sm:px-10
                 sm:py-16
                 lg:min-h-110
-                lg:grid-cols-[57%_43%]
+                lg:grid-cols-[52%_48%]
                 lg:items-center
-                lg:gap-4
+                lg:gap-10
                 lg:px-16
                 lg:py-10
+                xl:grid-cols-[50%_50%]
+                xl:gap-16
               "
             >
               <HeroIntro />

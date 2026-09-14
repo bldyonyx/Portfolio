@@ -37,7 +37,7 @@ function Skills() {
       id="skills"
       className="hero-dots relative overflow-visible bg-dark px-6 py-24 text-paper lg:px-8 lg:py-32"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl min-[1800px]:max-w-7xl">
         {/* HEADER */}
         <div className="mb-16 text-center">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
@@ -56,7 +56,7 @@ function Skills() {
         </div>
 
         {/* TOOLKIT */}
-        <div className="relative mx-auto max-w-5xl space-y-8 py-8">
+        <div className="relative mx-auto max-w-5xl space-y-8 py-8 min-[1800px]:max-w-6xl">
           {skillGroups.map((group) => (
             <SkillCard
               key={group.title}

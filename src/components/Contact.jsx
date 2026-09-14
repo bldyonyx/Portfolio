@@ -72,7 +72,7 @@ function Contact() {
       id="contact"
       className="hero-dots relative bg-dark px-6 py-24 text-paper lg:px-8 lg:py-32"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl min-[1800px]:max-w-7xl">
         {/* HEADER */}
         <div className="mb-16 text-center">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
@@ -91,7 +91,7 @@ function Contact() {
         </div>
 
         {/* LETTER AREA */}
-        <div className="relative mx-auto max-w-3xl">
+        <div className="relative mx-auto max-w-3xl min-[1800px]:max-w-4xl">
           {/* PAPER BEHIND */}
           <div className="absolute inset-3 rotate-[1.5deg] border border-paper/10 bg-wine/25" />
 
