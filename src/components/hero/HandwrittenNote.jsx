@@ -61,6 +61,8 @@ function HandwrittenNote() {
         hidden
         min-h-16
         min-w-45
+        translate-x-20
+        -translate-y-20
         -rotate-6
         lg:block
       "

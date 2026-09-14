@@ -75,9 +75,9 @@ function About() {
                 </div>
 
                 {/* HANDWRITTEN NOTE */}
-                <p className="mt-8 font-hand text-3xl text-wine">
-                  learning as I go
-                </p>
+              <p className="mt-8 translate-y-10 font-hand text-3xl text-wine">
+                learning as I go
+              </p>
               </div>
 
               {/* SIDE CARDS */}

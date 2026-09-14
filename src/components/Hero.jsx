@@ -31,7 +31,7 @@ function Hero() {
                 py-14
                 sm:px-10
                 sm:py-16
-                lg:min-h-[54vh]
+                lg:min-h-110
                 lg:grid-cols-[57%_43%]
                 lg:items-center
                 lg:gap-4
