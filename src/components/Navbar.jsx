@@ -1,11 +1,61 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+
+      const documentHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight
+
+      const scrollProgress =
+        documentHeight > 0
+          ? scrollTop / documentHeight
+          : 0
+
+      setScrolled(scrollTop > 20)
+      setProgress(scrollProgress)
+    }
+
+    handleScroll()
+
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    })
+
+    window.addEventListener('resize', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
+  }, [])
+
   return (
-    <nav className="hero-dots sticky top-0 z-50 bg-dark/95 text-paper backdrop-blur-sm">
+    <nav
+      className={`
+        hero-dots
+        sticky
+        top-0
+        z-50
+        text-paper
+        transition-all
+        duration-300
+        ${
+          scrolled
+            ? 'bg-dark/80 backdrop-blur-md'
+            : 'bg-dark/95 backdrop-blur-sm'
+        }
+      `}
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div className="flex h-[58px] items-center justify-between border-b border-paper/15">
+        <div className="flex h-[58px] items-center justify-between">
 
           {/* LOGO */}
           <Link
@@ -65,6 +115,23 @@ function Navbar() {
           </a>
 
         </div>
+      </div>
+
+      {/* SCROLL PROGRESS */}
+      <div className="h-px w-full bg-paper/10">
+        <div
+          className="
+            h-full
+            origin-left
+            bg-pink
+            shadow-[0_0_8px_rgba(227,196,202,0.35)]
+            transition-transform
+            duration-100
+          "
+          style={{
+            transform: `scaleX(${progress})`,
+          }}
+        />
       </div>
     </nav>
   )
