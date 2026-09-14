@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 const LEVEL_COLORS = [
-  '#f8f1f2',
+  '#e8d8dc',
   '#e3c4ca',
   '#d7aeb8',
   '#9b7882',
@@ -13,7 +13,6 @@ function GithubCalendar({ username }) {
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
-
   const [tooltip, setTooltip] = useState(null)
 
   const calendarRef = useRef(null)
@@ -36,8 +35,8 @@ function GithubCalendar({ username }) {
 
         setContributions(data.contributions || [])
         setTotal(data.total?.lastYear || 0)
-      } catch (err) {
-        console.error(err)
+      } catch (error) {
+        console.error(error)
         setError(true)
       } finally {
         setLoading(false)
@@ -81,7 +80,7 @@ function GithubCalendar({ username }) {
   }, [contributions])
 
   const monthLabels = useMemo(() => {
-    const labels = []
+    const labels = new Map()
     let previousMonth = null
 
     weeks.forEach((week, index) => {
@@ -93,12 +92,12 @@ function GithubCalendar({ username }) {
       const month = date.getMonth()
 
       if (month !== previousMonth) {
-        labels.push({
+        labels.set(
           index,
-          label: date.toLocaleDateString('en-US', {
+          date.toLocaleDateString('en-US', {
             month: 'short',
-          }),
-        })
+          })
+        )
 
         previousMonth = month
       }
@@ -122,15 +121,22 @@ function GithubCalendar({ username }) {
 
   if (loading) {
     return (
-      <div className="flex min-h-44 items-center justify-center font-typewriter text-xs text-wine/50">
-        loading activity ♡
+      <div className="flex min-h-48 items-center justify-center">
+        <div className="flex items-center gap-2 font-typewriter text-xs text-wine/65">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-wine/25" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-wine/70" />
+          </span>
+
+          loading activity ♡
+        </div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="flex min-h-44 items-center justify-center font-typewriter text-xs text-wine/50">
+      <div className="flex min-h-48 items-center justify-center font-typewriter text-xs text-wine/65">
         unable to load GitHub activity
       </div>
     )
@@ -138,39 +144,39 @@ function GithubCalendar({ username }) {
 
   return (
     <div ref={calendarRef} className="relative w-full">
-
       {/* MONTH LABELS */}
       <div
-        className="mb-3 grid gap-[2px]"
+        className="mb-3 grid"
         style={{
           gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))`,
+          gap: 'clamp(1px, 0.25vw, 3px)',
         }}
       >
-        {weeks.map((_, index) => {
-          const month = monthLabels.find((item) => item.index === index)
-
-          return (
-            <div
-              key={index}
-              className="min-w-0 font-typewriter text-[9px] text-wine/65"
-            >
-              {month?.label || ''}
-            </div>
-          )
-        })}
+        {weeks.map((_, index) => (
+          <div
+            key={index}
+            className="min-w-0 whitespace-nowrap font-typewriter text-[9px] text-wine/65"
+          >
+            {monthLabels.get(index) || ''}
+          </div>
+        ))}
       </div>
 
       {/* CONTRIBUTION GRID */}
       <div
-        className="grid gap-[2px]"
+        className="grid w-full"
         style={{
           gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))`,
+          gap: 'clamp(1px, 0.25vw, 3px)',
         }}
       >
         {weeks.map((week, weekIndex) => (
           <div
             key={weekIndex}
-            className="grid grid-rows-7 gap-[2px]"
+            className="grid min-w-0 grid-rows-7"
+            style={{
+              gap: 'clamp(1px, 0.25vw, 3px)',
+            }}
           >
             {week.map((day, dayIndex) => {
               if (!day) {
@@ -187,14 +193,34 @@ function GithubCalendar({ username }) {
                   key={day.date}
                   type="button"
                   aria-label={`${day.count} contributions on ${day.date}`}
-                  onMouseEnter={(event) => handleEnter(event, day)}
+                  onMouseEnter={(event) =>
+                    handleEnter(event, day)
+                  }
                   onMouseLeave={() => setTooltip(null)}
-                  onFocus={(event) => handleEnter(event, day)}
+                  onFocus={(event) =>
+                    handleEnter(event, day)
+                  }
                   onBlur={() => setTooltip(null)}
-                  className="aspect-square w-full rounded-[2px] transition duration-150 hover:scale-125 hover:ring-1 hover:ring-wine/40 focus:outline-none focus:ring-1 focus:ring-wine/50"
+                  className="
+                    aspect-square
+                    w-full
+                    min-w-0
+                    rounded-[2px]
+                    transition
+                    duration-150
+                    hover:z-10
+                    hover:scale-[1.4]
+                    hover:ring-1
+                    hover:ring-wine/60
+                    focus:z-10
+                    focus:outline-none
+                    focus:ring-1
+                    focus:ring-wine/70
+                  "
                   style={{
                     backgroundColor:
-                      LEVEL_COLORS[day.level] || LEVEL_COLORS[0],
+                      LEVEL_COLORS[day.level] ||
+                      LEVEL_COLORS[0],
                   }}
                 />
               )
@@ -204,49 +230,67 @@ function GithubCalendar({ username }) {
       </div>
 
       {/* BOTTOM INFO */}
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-4 font-typewriter text-[10px] text-wine">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-wine/10 pt-4 font-typewriter text-[10px] text-wine/70">
         <span>
-          {total} contributions in the last year
+          <strong className="font-normal text-wine">
+            {total}
+          </strong>{' '}
+          contributions in the last year
         </span>
 
         <div className="flex items-center gap-2">
-          <span>Less</span>
+          <span className="text-wine/55">Less</span>
 
           <div className="flex items-center gap-1">
             {LEVEL_COLORS.map((color) => (
               <span
                 key={color}
-                className="h-3 w-3 rounded-[2px]"
-                style={{ backgroundColor: color }}
+                className="h-3 w-3 rounded-[2px] border border-wine/10"
+                style={{
+                  backgroundColor: color,
+                }}
               />
             ))}
           </div>
 
-          <span>More</span>
+          <span className="text-wine/55">More</span>
         </div>
       </div>
 
       {/* TOOLTIP */}
       {tooltip && (
         <div
-          className="pointer-events-none absolute z-30 w-max -translate-x-1/2 -translate-y-full border border-wine/20 bg-paper px-3 py-2 text-center shadow-[4px_5px_0_rgba(104,69,80,0.12)]"
+          className="
+            pointer-events-none
+            absolute
+            z-30
+            w-max
+            -translate-x-1/2
+            -translate-y-full
+            border
+            border-wine/25
+            bg-paper
+            px-3
+            py-2.5
+            text-center
+            shadow-[4px_5px_0_rgba(104,69,80,0.14)]
+          "
           style={{
             left: tooltip.x,
-            top: tooltip.y - 8,
+            top: tooltip.y - 9,
           }}
         >
-          <p className="font-typewriter text-[9px] text-wine/55">
-            {new Date(`${tooltip.day.date}T00:00:00`).toLocaleDateString(
-              'en-US',
-              {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              }
-            )}
+          <p className="font-typewriter text-[10px] text-wine/60">
+            {new Date(
+              `${tooltip.day.date}T00:00:00`
+            ).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })}
           </p>
 
-          <p className="mt-1 font-typewriter text-[10px] text-wine">
+          <p className="mt-1 font-typewriter text-[11px] text-wine">
             {tooltip.day.count}{' '}
             {tooltip.day.count === 1
               ? 'contribution'

@@ -1,4 +1,14 @@
+import {
+  ExternalLink,
+  GitBranch,
+  Minus,
+  Square,
+  X,
+} from 'lucide-react'
+
 import GithubCalendar from './github/GithubCalendar'
+import GithubProfile from './github/GithubProfile'
+import GithubTimelineNote from './github/GithubTimelineNote'
 
 function GithubSection() {
   return (
@@ -27,29 +37,52 @@ function GithubSection() {
         {/* GITHUB WINDOW */}
         <div className="relative">
           {/* BACK PAPER */}
-          <div className="absolute inset-3 rotate-[1.5deg] border border-paper/10 bg-wine/25" />
+          <div className="absolute inset-3 rotate-[1.2deg] border border-paper/10 bg-wine/25" />
 
           {/* MAIN WINDOW */}
           <div className="relative overflow-hidden border border-paper/20 bg-paper text-ink shadow-[10px_12px_0_rgba(0,0,0,0.16)]">
             {/* WINDOW BAR */}
             <div className="flex items-center justify-between border-b border-wine/20 bg-pink/35 px-5 py-3">
-              <div className="flex items-center gap-2 font-typewriter text-[10px] uppercase tracking-[0.2em] text-wine">
-                <span>♡</span>
-                <span>github.activity</span>
+              <div className="flex items-center gap-2 text-wine">
+                <GitBranch size={12} strokeWidth={1.5} />
+
+                <span className="font-typewriter text-[10px] uppercase tracking-[0.18em]">
+                  github.activity
+                </span>
               </div>
 
-              <div className="flex items-center gap-3 font-typewriter text-xs text-wine">
-                <span>—</span>
-                <span>□</span>
-                <span>×</span>
+              <div className="flex items-center gap-3 text-wine/60">
+                <Minus size={12} strokeWidth={1.5} />
+                <Square size={10} strokeWidth={1.5} />
+                <X size={12} strokeWidth={1.5} />
               </div>
             </div>
 
+            {/* STATUS BAR */}
+            <div className="flex items-center gap-2 border-b border-wine/10 bg-paper px-5 py-2.5">
+              <span className="font-typewriter text-[10px] text-wine/45">
+                &gt;
+              </span>
+
+              <span className="font-typewriter text-[9px] tracking-[0.12em] text-wine/45">
+                fetching contributions...
+              </span>
+
+              <span className="ml-auto flex items-center gap-2 font-typewriter text-[9px] text-wine/45">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-wine/25" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-wine/60" />
+                </span>
+
+                synced
+              </span>
+            </div>
+
             {/* WINDOW CONTENT */}
-            <div className="grid gap-10 px-8 py-10 md:px-12 md:py-12 lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-10">
+            <div className="grid gap-12 px-8 py-10 md:px-12 md:py-12 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start">
               {/* LEFT */}
               <div className="min-w-0">
-                <div className="mb-6">
+                <div className="mb-7">
                   <p className="font-typewriter text-[10px] uppercase tracking-[0.25em] text-wine/55">
                     contribution activity
                   </p>
@@ -59,38 +92,31 @@ function GithubSection() {
                   </p>
                 </div>
 
-                {/* CUSTOM LIVE CALENDAR */}
-                <div className="border border-wine/15 bg-cream px-4 py-5">
-                  <GithubCalendar username="bldyonyx" />
+                {/* CALENDAR */}
+                <div className="relative">
+                  <div className="absolute -inset-1 rotate-[0.7deg] bg-pink/25" />
+
+                  <div className="relative border border-wine/15 bg-cream px-4 py-5 shadow-[5px_6px_0_rgba(104,69,80,0.07)]">
+                    <GithubCalendar username="bldyonyx" />
+                  </div>
                 </div>
               </div>
 
               {/* RIGHT */}
-              <div className="relative space-y-6">
-                {/* PROFILE */}
-                <div className="rotate-[1deg] border border-wine/20 bg-cream p-5 shadow-[5px_6px_0_rgba(104,69,80,0.08)]">
-                  <p className="font-typewriter text-[10px] uppercase tracking-[0.25em] text-wine/50">
-                    profile
-                  </p>
+              <div className="relative">
+                <GithubProfile username="bldyonyx" />
 
-                  <p className="mt-3 font-display text-3xl text-wine">
-                    bldyonyx
-                  </p>
-
-                  <p className="mt-3 font-typewriter text-xs leading-6 text-ink/65">
-                    learning · building · improving
-                  </p>
-                </div>
-
-                {/* JOURNEY NOTE */}
-                <div className="-rotate-[2deg] border border-wine/15 bg-pink/35 px-5 py-5">
-                  <p className="mb-2 font-typewriter text-[9px] uppercase tracking-[0.22em] text-wine/45">
+                {/* NOTE */}
+                <div className="mt-8 -rotate-[1.5deg] border border-wine/15 bg-pink/30 px-5 py-5 shadow-[4px_5px_0_rgba(104,69,80,0.06)]">
+                  <p className="mb-3 font-typewriter text-[9px] uppercase tracking-[0.22em] text-wine/45">
                     little timeline
                   </p>
 
-                  <p className="font-hand text-[1.65rem] leading-7 text-wine">
-                    joined GitHub in August ♡
+                  <p className="font-typewriter text-[11px] leading-5 text-wine/70">
+                    joined GitHub near the end of
                   </p>
+
+                  <GithubTimelineNote />
                 </div>
 
                 {/* LINK */}
@@ -98,13 +124,19 @@ function GithubSection() {
                   href="https://github.com/bldyonyx"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-block border-b border-wine pb-1 font-typewriter text-xs text-wine transition-all duration-300 hover:-translate-y-1 hover:border-pink hover:text-pink"
+                  className="group mt-8 inline-flex items-center gap-2 border-b border-wine pb-1 font-typewriter text-xs text-wine transition-all duration-300 hover:-translate-y-1 hover:border-pink hover:text-pink"
                 >
-                  view my GitHub ↗
+                  <span>view my GitHub</span>
+
+                  <ExternalLink
+                    size={12}
+                    strokeWidth={1.5}
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
                 </a>
 
                 {/* DECORATION */}
-                <span className="absolute -bottom-4 -right-2 rotate-12 font-hand text-4xl text-wine">
+                <span className="absolute -bottom-4 right-1 rotate-12 font-hand text-3xl text-wine/60">
                   ᛝ
                 </span>
               </div>
