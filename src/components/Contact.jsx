@@ -1,9 +1,67 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { GitBranch } from 'lucide-react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import ContactForm from './contact/ContactForm'
+import ContactHandwrittenNote from './contact/ContactHandwrittenNote'
+
+gsap.registerPlugin(ScrollTrigger)
 
 function Contact() {
   const [formOpen, setFormOpen] = useState(false)
+
+  const letterRef = useRef(null)
+  const tapeRef = useRef(null)
+
+  useEffect(() => {
+    const context = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: letterRef.current,
+          start: 'top 82%',
+          once: true,
+        },
+      })
+
+      timeline.fromTo(
+        letterRef.current,
+        {
+          opacity: 0,
+          y: 28,
+          rotate: -0.5,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          rotate: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+        }
+      )
+
+      timeline.fromTo(
+        tapeRef.current,
+        {
+          opacity: 0,
+          y: -12,
+          rotate: -7,
+          scale: 0.92,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          rotate: -2,
+          scale: 1,
+          duration: 0.55,
+          ease: 'back.out(1.7)',
+        },
+        '-=0.3'
+      )
+    }, letterRef)
+
+    return () => context.revert()
+  }, [])
 
   return (
     <section
@@ -34,28 +92,36 @@ function Contact() {
           <div className="absolute inset-3 rotate-[1.5deg] border border-paper/10 bg-wine/25" />
 
           {/* MAIN PAPER */}
-          <div className="relative border border-wine/20 bg-cream px-8 py-12 text-ink shadow-[10px_12px_0_rgba(0,0,0,0.16)] md:px-14 md:py-14">
+          <div
+            ref={letterRef}
+            className="relative min-h-[500px] border border-wine/20 bg-cream px-8 py-12 text-ink shadow-[10px_12px_0_rgba(0,0,0,0.16)] md:px-14 md:py-14"
+          >
             {/* TAPE */}
-            <div className="absolute -top-4 left-1/2 h-8 w-28 -translate-x-1/2 -rotate-2 bg-blush/65" />
+            <div
+              ref={tapeRef}
+              className="absolute -top-4 left-1/2 h-8 w-28 -translate-x-1/2 -rotate-2 bg-blush/65"
+            />
 
             {/* LETTER TOP */}
-            <div className="mb-10 flex items-center justify-between border-b border-wine/15 pb-4 font-typewriter text-[10px] uppercase tracking-[0.2em] text-wine/50">
-              <span>to: you ♡</span>
+            <div className="flex items-center justify-between border-b border-wine/15 pb-4 font-typewriter text-[10px] uppercase tracking-[0.2em] text-wine/50">
+              <span>to: you</span>
               <span>from: maya</span>
             </div>
 
             {/* LETTER CONTENT */}
-            <div className="mx-auto max-w-xl text-center">
+            <div className="mx-auto mt-12 max-w-xl text-center">
               {/* GREETING */}
-              <p className="font-hand text-3xl text-wine md:text-4xl">
-                hi there
-              </p>
+              <div className="flex justify-center">
+                <p className="-translate-x-5 -rotate-2 font-hand text-3xl text-wine md:text-4xl">
+                  hi there !
+                </p>
+              </div>
 
               {/* MESSAGE */}
-              <p className="mx-auto mt-6 max-w-md font-typewriter text-sm leading-7 text-ink/70">
-                I&apos;m always happy to chat about coding,
-                creative ideas, projects, or anything in between.
-                My inbox is always open.
+              <p className="mx-auto mt-7 max-w-md font-typewriter text-sm leading-7 text-ink/70">
+                I&apos;m always happy to chat about coding, creative
+                ideas, projects, or anything in between. My inbox is
+                always open.
               </p>
 
               {/* CONTACT BUTTON */}
@@ -68,21 +134,22 @@ function Contact() {
               </button>
 
               {/* GITHUB */}
-              <div className="mt-8 flex justify-center">
+              <div className="mt-7 flex justify-center">
                 <a
                   href="https://github.com/bldyonyx"
                   target="_blank"
                   rel="noreferrer"
-                  className="border-b border-wine/40 pb-1 font-typewriter text-xs text-wine transition-all duration-300 hover:-translate-y-0.5 hover:border-wine hover:text-dark"
+                  className="group inline-flex items-center gap-2 border-b border-wine/40 pb-1 font-typewriter text-xs text-wine transition-all duration-300 hover:-translate-y-0.5 hover:border-wine hover:text-dark"
                 >
-                  github ↗
+                  <GitBranch
+                    size={13}
+                    strokeWidth={1.5}
+                    className="transition-transform duration-300 group-hover:-rotate-6"
+                  />
+
+                  <span>github ↗</span>
                 </a>
               </div>
-
-              {/* HANDWRITTEN ENDING */}
-              <p className="mt-12 -rotate-2 font-hand text-3xl text-wine">
-                hope to hear from you ‹𝟹
-              </p>
             </div>
 
             {/* DECORATIONS */}
@@ -94,6 +161,10 @@ function Contact() {
               ʚଓ
             </span>
 
+            {/* HANDWRITTEN ENDING */}
+            <ContactHandwrittenNote />
+
+            {/* CONTACT FORM */}
             <ContactForm
               isOpen={formOpen}
               onClose={() => setFormOpen(false)}

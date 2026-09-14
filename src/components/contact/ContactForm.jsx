@@ -1,7 +1,12 @@
 import { useForm, ValidationError } from '@formspree/react'
 
 function ContactForm({ isOpen, onClose }) {
-  const [state, handleSubmit] = useForm('moeqgwbq')
+  const [state, handleSubmit, reset] = useForm('moeqgwbq')
+
+  const handleClose = () => {
+    reset()
+    onClose()
+  }
 
   if (!isOpen) return null
 
@@ -17,7 +22,7 @@ function ContactForm({ isOpen, onClose }) {
 
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             aria-label="Close contact form"
             className="font-typewriter text-sm text-wine transition-colors duration-300 hover:text-dark"
           >
@@ -39,7 +44,7 @@ function ContactForm({ isOpen, onClose }) {
 
             <button
               type="button"
-              onClick={onClose}
+              onClick={handleClose}
               className="mt-7 border-b border-wine/40 pb-1 font-typewriter text-xs text-wine transition-colors duration-300 hover:border-wine hover:text-dark"
             >
               close
