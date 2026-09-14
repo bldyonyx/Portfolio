@@ -1,4 +1,4 @@
-import AnnotatedText from './AnnotatedText'
+import AnnotatedText from './about/AnnotatedText'
 import LocalTimeCard from './about/LocalTimeCard'
 
 function About() {
