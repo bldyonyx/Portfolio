@@ -23,7 +23,7 @@ function ProjectCard({ project, index, total }) {
           px-6
           py-8
           text-ink
-          shadow-[8px_10px_0_rgba(104,69,80,0.08)]
+          shadow-[10px_12px_0_rgba(0,0,0,0.16)]
           md:px-10
           md:py-10
           lg:px-12

@@ -112,17 +112,10 @@ function ProjectDetails() {
   // ========================================
 
   const goBackToProjects = () => {
-    navigate('/')
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document
-          .getElementById('projects')
-          ?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          })
-      })
+    navigate('/', {
+      state: {
+        scrollTo: 'projects',
+      },
     })
   }
 

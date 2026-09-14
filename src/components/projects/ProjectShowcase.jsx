@@ -171,7 +171,7 @@ function ProjectShowcase({ slides }) {
               bg-paper
               p-5
               text-ink
-              shadow-[10px_12px_0_rgba(0,0,0,0.15)]
+              shadow-[10px_12px_0_rgba(0,0,0,0.16)]
               sm:p-7
               lg:p-9
             "
@@ -198,24 +198,24 @@ function ProjectShowcase({ slides }) {
                     ref={imageRef}
                     className="w-full overflow-hidden"
                   >
-                  <img
-                    src={activeSlide.image}
-                    alt={activeSlide.title}
-                    className={`
-                      block
-                      max-h-[500px]
-                      w-full
-                      object-contain
-                      transition-transform
-                      duration-700
-                      ease-out
-                      ${
-                        isPaused
-                          ? 'hover:scale-[1.07]'
-                          : ''
-                      }
-                    `}
-                  />
+                    <img
+                      src={activeSlide.image}
+                      alt={activeSlide.title}
+                      className={`
+                        block
+                        max-h-[500px]
+                        w-full
+                        object-contain
+                        transition-transform
+                        duration-700
+                        ease-out
+                        ${
+                          isPaused
+                            ? 'hover:scale-[1.07]'
+                            : ''
+                        }
+                      `}
+                    />
                   </div>
 
                   {/* IMAGE LABEL */}

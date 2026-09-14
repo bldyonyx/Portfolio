@@ -114,7 +114,7 @@ function SkillCard({
         border-wine/20
         p-7
         text-ink
-        shadow-[7px_9px_0_rgba(0,0,0,0.15)]
+        shadow-[10px_12px_0_rgba(0,0,0,0.16)]
         transition-all
         duration-300
         hover:z-50
