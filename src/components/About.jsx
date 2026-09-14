@@ -20,7 +20,7 @@ function About() {
         </div>
 
         {/* ABOUT WINDOW */}
-        <div className="relative mx-auto max-w-5xl">
+        <div className="relative">
           {/* PAPER BEHIND */}
           <div className="absolute inset-3 rotate-[1.5deg] border border-paper/10 bg-wine/25" />
 
@@ -50,11 +50,12 @@ function About() {
 
                 <div className="space-y-6 font-typewriter text-sm leading-7 text-ink/75 md:text-base md:leading-8">
                   <p>
-                    I&apos;m a student who recently found her way into{' '}
+                    I&apos;m a 24 years old student who recently found her way into{' '}
                     <AnnotatedText type="underline">
                       front-end development
                     </AnnotatedText>
-                    . I started learning by building small projects in class
+                    . <br />
+                    I started learning by building small projects in class
                     and outside of class and quickly discovered how much I
                     enjoy turning an idea into something I can actually see
                     and interact with.
@@ -75,7 +76,7 @@ function About() {
 
                 {/* HANDWRITTEN NOTE */}
                 <p className="mt-8 font-hand text-3xl text-wine">
-                  learning as I go ♡
+                  learning as I go
                 </p>
               </div>
 
