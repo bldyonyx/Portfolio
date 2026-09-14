@@ -55,7 +55,6 @@ function ScrollToTop() {
         hover:border-wine/30
         hover:bg-pink
         hover:shadow-[5px_6px_0_rgba(0,0,0,0.2)]
-        focus-visible:outline
         focus-visible:outline-2
         focus-visible:outline-offset-4
         focus-visible:outline-paper

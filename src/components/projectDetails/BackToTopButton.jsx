@@ -32,7 +32,6 @@ function BackToTopButton({
         hover:bg-pink
         hover:shadow-[3px_4px_0_rgba(0,0,0,0.14)]
         focus-visible:outline
-        focus-visible:outline-2
         focus-visible:outline-offset-4
         focus-visible:outline-pink
         ${

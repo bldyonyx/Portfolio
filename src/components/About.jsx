@@ -83,7 +83,7 @@ function About() {
               {/* SIDE CARDS */}
               <div className="relative space-y-6">
                 {/* LANGUAGES */}
-                <div className="rotate-[1deg] border border-wine/20 bg-cream p-6 shadow-[5px_6px_0_rgba(104,69,80,0.08)]">
+                <div className="rotate-1 border border-wine/20 bg-cream p-6 shadow-[5px_6px_0_rgba(104,69,80,0.08)]">
                   <p className="mb-5 font-typewriter text-[10px] uppercase tracking-[0.25em] text-wine/65">
                     languages i speak
                   </p>

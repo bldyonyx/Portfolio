@@ -57,8 +57,8 @@ function ContactHandwrittenNote() {
         absolute
         bottom-8
         right-8
-        min-h-[38px]
-        w-[240px]
+        min-h-9.5
+        w-60
         -rotate-3
         text-left
       "

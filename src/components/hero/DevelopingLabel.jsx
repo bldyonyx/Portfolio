@@ -1,6 +1,6 @@
 function DevelopingLabel() {
   return (
-    <div className="absolute left-4 top-4 z-20 rotate-[-2deg] bg-wine/45 px-3.5 py-1.5">
+    <div className="absolute left-4 top-4 z-20 -rotate-2 bg-wine/45 px-3.5 py-1.5">
       <span className="inline-flex items-center font-typewriter text-[10px] text-paper">
         <span>♡&nbsp;</span>
 
@@ -16,7 +16,7 @@ function DevelopingLabel() {
           </span>
         ))}
 
-        <span className="ml-[1px] inline-flex">
+        <span className="ml-px inline-flex">
           <span className="animate-[pulse_1.4s_ease-in-out_infinite]">
             .
           </span>

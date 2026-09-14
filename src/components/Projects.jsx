@@ -131,7 +131,7 @@ function Projects() {
                 mb-16
                 sm:mb-20
                 lg:sticky
-                lg:[top:calc(6rem+var(--stack-index)*1.125rem)]
+                lg:top-[calc(6rem+var(--stack-index)*1.125rem)]
               "
               style={{
                 '--stack-index': index,

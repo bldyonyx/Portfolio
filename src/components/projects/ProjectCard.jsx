@@ -11,7 +11,7 @@ function ProjectCard({ project, index, total }) {
       <div className="absolute inset-4 rotate-[1.25deg] border border-wine/15 bg-cream" />
 
       {/* SECOND PAPER LAYER */}
-      <div className="absolute inset-2 -rotate-[0.8deg] border border-wine/10 bg-pink/20" />
+      <div className="absolute inset-2 rotate-[-0.8deg] border border-wine/10 bg-pink/20" />
 
       {/* MAIN CARD */}
       <div
@@ -49,7 +49,7 @@ function ProjectCard({ project, index, total }) {
             className="relative"
           >
             <div className="border border-wine/15 bg-cream p-3">
-              <div className="aspect-[4/3] overflow-hidden bg-pink/30">
+              <div className="aspect-4/3 overflow-hidden bg-pink/30">
                 <img
                   src={project.image}
                   alt={`${project.title} project preview`}

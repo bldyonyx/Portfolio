@@ -107,7 +107,7 @@ function GithubSection() {
                 <GithubProfile username="bldyonyx" />
 
                 {/* NOTE */}
-                <div className="mt-8 -rotate-[1.5deg] border border-wine/15 bg-pink/30 px-5 py-5 shadow-[4px_5px_0_rgba(104,69,80,0.06)]">
+                <div className="mt-8 rotate-[-1.5deg] border border-wine/15 bg-pink/30 px-5 py-5 shadow-[4px_5px_0_rgba(104,69,80,0.06)]">
                   <p className="mb-3 font-typewriter text-[9px] uppercase tracking-[0.22em] text-wine/45">
                     little timeline
                   </p>

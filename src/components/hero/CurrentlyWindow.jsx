@@ -36,7 +36,7 @@ function CurrentlyWindow() {
         -right-8
         z-40
         w-40
-        rotate-[1deg]
+        rotate-1
         border
         border-wine/30
         bg-paper
@@ -97,7 +97,7 @@ function CurrentlyWindow() {
             {currentActivities[activityIndex]}
           </span>
 
-          <span className="ml-[2px] animate-[cursor-blink_900ms_steps(1)_infinite] text-wine">
+          <span className="ml-0.5 animate-[cursor-blink_900ms_steps(1)_infinite] text-wine">
             _
           </span>
         </div>

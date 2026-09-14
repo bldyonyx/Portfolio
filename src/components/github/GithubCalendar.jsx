@@ -205,7 +205,7 @@ function GithubCalendar({ username }) {
                     aspect-square
                     w-full
                     min-w-0
-                    rounded-[2px]
+                    rounded-xs
                     transition
                     duration-150
                     hover:z-10
@@ -245,7 +245,7 @@ function GithubCalendar({ username }) {
             {LEVEL_COLORS.map((color) => (
               <span
                 key={color}
-                className="h-3 w-3 rounded-[2px] border border-wine/10"
+                className="h-3 w-3 rounded-xs border border-wine/10"
                 style={{
                   backgroundColor: color,
                 }}

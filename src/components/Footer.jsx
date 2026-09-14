@@ -102,7 +102,7 @@ function Footer() {
                   className="
                     border
                     border-paper/15
-                    bg-paper/[0.03]
+                    bg-paper/3
                     px-5
                     py-2.5
                     font-typewriter

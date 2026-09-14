@@ -51,7 +51,7 @@ function GithubTimelineNote() {
   }, [hasStartedTyping, typedText])
 
   return (
-    <div ref={noteRef} className="mt-2 min-h-[34px]">
+    <div ref={noteRef} className="mt-2 min-h-8.5">
       <span className="font-hand text-[2.15rem] leading-none text-wine">
         {typedText}
 

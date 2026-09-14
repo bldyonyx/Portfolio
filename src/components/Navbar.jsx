@@ -55,7 +55,7 @@ function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div className="flex h-[58px] items-center justify-between">
+        <div className="flex h-14.5 items-center justify-between">
 
           {/* LOGO */}
           <Link

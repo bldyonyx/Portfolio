@@ -171,7 +171,7 @@ function SkillCard({
                 duration-300
 
                 group-hover:-translate-y-1
-                group-hover:rotate-[1deg]
+                group-hover:rotate-1
                 group-hover:border-wine/50
                 group-hover:bg-wine
                 group-hover:text-paper
@@ -188,7 +188,7 @@ function SkillCard({
                 absolute
                 left-1/2
                 top-full
-                z-[100]
+                z-100
                 mt-4
                 w-64
                 -translate-x-1/2

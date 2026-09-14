@@ -203,7 +203,7 @@ function ProjectShowcase({ slides }) {
                       alt={activeSlide.title}
                       className={`
                         block
-                        max-h-[500px]
+                        max-h-125
                         w-full
                         object-contain
                         transition-transform
@@ -243,11 +243,11 @@ function ProjectShowcase({ slides }) {
                 <div
                   className="
                     flex
-                    min-h-[320px]
+                    min-h-80
                     flex-col
                     justify-between
                     py-2
-                    lg:min-h-[430px]
+                    lg:min-h-107.5
                     lg:py-4
                   "
                 >

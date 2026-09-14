@@ -59,8 +59,8 @@ function HandwrittenNote() {
         ml-[55%]
         mt-14
         hidden
-        min-h-[64px]
-        min-w-[180px]
+        min-h-16
+        min-w-45
         -rotate-6
         lg:block
       "

@@ -9,28 +9,28 @@ function HeroCollage() {
         z-10
         mx-auto
         w-full
-        max-w-[220px]
-        sm:max-w-[245px]
+        max-w-55
+        sm:max-w-61.25
         lg:ml-8
-        lg:max-w-[265px]
+        lg:max-w-66.25
         lg:-translate-y-1
       "
     >
       <div className="relative">
 
         {/* BACK PAPER 1 */}
-        <div className="absolute -left-3 -top-2 h-full w-full -rotate-[3deg] border border-wine/15 bg-cream" />
+        <div className="absolute -left-3 -top-2 h-full w-full -rotate-3 border border-wine/15 bg-cream" />
 
         {/* BACK PAPER 2 */}
-        <div className="absolute -right-3 top-2 h-full w-full rotate-[3deg] border border-wine/15 bg-pink/30 sm:-right-4" />
+        <div className="absolute -right-3 top-2 h-full w-full rotate-3 border border-wine/15 bg-pink/30 sm:-right-4" />
 
         {/* MAIN POLAROID */}
-        <div className="relative -rotate-[1.5deg] border border-wine/25 bg-paper p-2.5 pb-7 shadow-[7px_9px_18px_rgba(104,69,80,0.15)]">
+        <div className="relative rotate-[-1.5deg] border border-wine/25 bg-paper p-2.5 pb-7 shadow-[7px_9px_18px_rgba(104,69,80,0.15)]">
 
           <DevelopingLabel />
 
           {/* PHOTO */}
-          <div className="aspect-[4/5] overflow-hidden bg-pink/30">
+          <div className="aspect-4/5 overflow-hidden bg-pink/30">
             <div className="flex h-full items-center justify-center bg-[linear-gradient(145deg,#ead7da,#f4e8e9)]">
               <span className="text-3xl text-wine/80">
                 ꒰ ᧔ෆ᧓ ꒱

@@ -98,7 +98,7 @@ function Contact() {
           {/* MAIN PAPER */}
           <div
             ref={letterRef}
-            className="relative min-h-[500px] border border-wine/20 bg-cream px-8 py-12 text-ink shadow-[10px_12px_0_rgba(0,0,0,0.16)] md:px-14 md:py-14"
+            className="relative min-h-125 border border-wine/20 bg-cream px-8 py-12 text-ink shadow-[10px_12px_0_rgba(0,0,0,0.16)] md:px-14 md:py-14"
           >
             {/* TAPE */}
             <div

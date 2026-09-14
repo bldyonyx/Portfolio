@@ -31,7 +31,7 @@ function ClickEffect() {
   }, [])
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-9999 overflow-hidden">
       {bursts.map((burst) => (
         <div
           key={burst.id}
@@ -53,7 +53,7 @@ function ClickEffect() {
           {Array.from({ length: 8 }).map((_, index) => (
             <span
               key={`ray-${index}`}
-              className="click-burst-ray absolute left-0 top-0 h-[9px] w-[1px] bg-wine"
+              className="click-burst-ray absolute left-0 top-0 h-2.25 w-px bg-wine"
               style={{
                 '--burst-angle': `${index * 45}deg`,
               }}
