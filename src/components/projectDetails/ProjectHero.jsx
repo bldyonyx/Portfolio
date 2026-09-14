@@ -32,17 +32,13 @@ function ProjectHero({
         '[data-hero-note]'
       )
 
-      const content = heroRef.current?.querySelector(
-        '[data-hero-content]'
-      )
-
       const explore = heroRef.current?.querySelector(
         '[data-hero-explore]'
       )
 
       const timeline = gsap.timeline({
         defaults: {
-          ease: 'power3.out',
+          ease: 'power2.out',
         },
       })
 
@@ -50,13 +46,11 @@ function ProjectHero({
         timeline.fromTo(
           intro,
           {
-            y: 10,
             opacity: 0,
           },
           {
-            y: 0,
             opacity: 1,
-            duration: 0.45,
+            duration: 0.35,
           }
         )
       }
@@ -65,15 +59,15 @@ function ProjectHero({
         timeline.fromTo(
           title,
           {
-            y: 24,
+            y: 14,
             opacity: 0,
           },
           {
             y: 0,
             opacity: 1,
-            duration: 0.75,
+            duration: 0.6,
           },
-          '-=0.2'
+          '-=0.15'
         )
       }
 
@@ -81,38 +75,16 @@ function ProjectHero({
         timeline.fromTo(
           note,
           {
-            y: 10,
             opacity: 0,
           },
           {
-            y: 0,
             opacity: 1,
-            duration: 0.55,
+            duration: 0.45,
           },
-          '-=0.35'
+          '-=0.25'
         )
       }
 
-      if (content) {
-        timeline.fromTo(
-          content,
-          {
-            x: 18,
-            opacity: 0,
-          },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.65,
-          },
-          '-=0.45'
-        )
-      }
-
-      /*
-       * Work in progress stamp
-       * Only exists when project.status exists.
-       */
       if (status) {
         timeline.fromTo(
           status,
@@ -128,7 +100,7 @@ function ProjectHero({
             duration: 0.42,
             ease: 'back.out(2)',
           },
-          '-=0.3'
+          '-=0.2'
         )
       }
 
@@ -136,15 +108,13 @@ function ProjectHero({
         timeline.fromTo(
           explore,
           {
-            y: 8,
             opacity: 0,
           },
           {
-            y: 0,
             opacity: 1,
-            duration: 0.45,
+            duration: 0.4,
           },
-          '-=0.15'
+          '-=0.1'
         )
       }
     }, heroRef)
@@ -274,7 +244,6 @@ function ProjectHero({
 
             {/* INTERACTIVE INFO */}
             <div
-              data-hero-content
               className="
                 relative
                 border-t
