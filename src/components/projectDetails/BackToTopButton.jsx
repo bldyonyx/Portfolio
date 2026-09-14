@@ -9,7 +9,9 @@ function BackToTopButton({
       type="button"
       onClick={onClick}
       aria-label="Back to top"
+      title="Back to top"
       className={`
+        group
         fixed
         bottom-6
         right-6
@@ -24,14 +26,19 @@ function BackToTopButton({
         bg-paper
         text-wine
         shadow-[4px_5px_0_rgba(0,0,0,0.16)]
-        transition-all
+        transition-[opacity,transform,background-color,box-shadow]
         duration-300
-        hover:-translate-y-1
+        ease-out
         hover:bg-pink
+        hover:shadow-[3px_4px_0_rgba(0,0,0,0.14)]
+        focus-visible:outline
+        focus-visible:outline-2
+        focus-visible:outline-offset-4
+        focus-visible:outline-pink
         ${
           showBackToTop
             ? 'pointer-events-auto translate-y-0 opacity-100'
-            : 'pointer-events-none translate-y-4 opacity-0'
+            : 'pointer-events-none translate-y-3 opacity-0'
         }
       `}
     >
@@ -39,6 +46,12 @@ function BackToTopButton({
         size={16}
         strokeWidth={1.7}
         aria-hidden="true"
+        className="
+          transition-transform
+          duration-300
+          ease-out
+          group-hover:-translate-y-1
+        "
       />
     </button>
   )
