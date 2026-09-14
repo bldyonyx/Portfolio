@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import gsap from 'gsap'
 
 function useProjectShowcase(slides) {
@@ -15,7 +21,7 @@ function useProjectShowcase(slides) {
 
   const activeSlide = slides[activeIndex] ?? null
 
-  // Slide entering
+  // SLIDE ENTERING
   useLayoutEffect(() => {
     const image = imageRef.current
     const changingText = changingTextRef.current
@@ -24,7 +30,10 @@ function useProjectShowcase(slides) {
 
     const direction = directionRef.current
 
-    gsap.killTweensOf([image, changingText])
+    gsap.killTweensOf([
+      image,
+      changingText,
+    ])
 
     const timeline = gsap.timeline({
       onComplete: () => {
@@ -32,35 +41,39 @@ function useProjectShowcase(slides) {
       },
     })
 
+    // IMAGE ENTER
     timeline.fromTo(
       image,
       {
         opacity: 0,
-        x: direction > 0 ? 24 : -24,
-        scale: 0.995,
+        x: direction > 0 ? 10 : -10,
+        y: 6,
+        scale: 1.012,
       },
       {
         opacity: 1,
         x: 0,
+        y: 0,
         scale: 1,
-        duration: 0.58,
+        duration: 0.7,
         ease: 'power3.out',
       }
     )
 
+    // TEXT ENTER
     timeline.fromTo(
       changingText,
       {
         opacity: 0,
-        x: direction > 0 ? 18 : -18,
+        y: 8,
       },
       {
         opacity: 1,
-        x: 0,
+        y: 0,
         duration: 0.52,
-        ease: 'power3.out',
+        ease: 'power2.out',
       },
-      '<0.06'
+      '<0.08'
     )
 
     return () => {
@@ -68,7 +81,7 @@ function useProjectShowcase(slides) {
     }
   }, [activeIndex, activeSlide])
 
-  // Change slide
+  // CHANGE SLIDE
   const changeSlide = useCallback(
     (nextIndex, direction = 1) => {
       if (animatingRef.current) return
@@ -82,7 +95,10 @@ function useProjectShowcase(slides) {
       animatingRef.current = true
       directionRef.current = direction
 
-      gsap.killTweensOf([image, changingText])
+      gsap.killTweensOf([
+        image,
+        changingText,
+      ])
 
       const timeline = gsap.timeline({
         onComplete: () => {
@@ -91,74 +107,108 @@ function useProjectShowcase(slides) {
         },
       })
 
+      // IMAGE LEAVING
       timeline.to(
         image,
         {
           opacity: 0,
-          x: direction > 0 ? -22 : 22,
-          scale: 0.995,
-          duration: 0.32,
+          x: direction > 0 ? -8 : 8,
+          y: -4,
+          scale: 0.992,
+          duration: 0.38,
           ease: 'power2.inOut',
         },
         0
       )
 
+      // TEXT LEAVING
       timeline.to(
         changingText,
         {
           opacity: 0,
-          x: direction > 0 ? -16 : 16,
-          duration: 0.28,
+          y: -6,
+          duration: 0.3,
           ease: 'power2.inOut',
         },
-        0.03
+        0.04
       )
     },
     []
   )
 
-  // Next slide
+  // NEXT SLIDE
   const goToNextSlide = useCallback(() => {
-    if (!slides.length || animatingRef.current) return
+    if (
+      !slides.length ||
+      animatingRef.current
+    ) {
+      return
+    }
 
-    const current = activeIndexRef.current
-    const nextIndex = (current + 1) % slides.length
+    const current =
+      activeIndexRef.current
 
-    changeSlide(nextIndex, 1)
-  }, [slides.length, changeSlide])
+    const nextIndex =
+      (current + 1) % slides.length
 
-  // Specific slide
+    changeSlide(
+      nextIndex,
+      1
+    )
+  }, [
+    slides.length,
+    changeSlide,
+  ])
+
+  // SPECIFIC SLIDE
   const goToSlide = useCallback(
     (index) => {
-      const current = activeIndexRef.current
+      const current =
+        activeIndexRef.current
 
       if (index === current) return
 
-      const direction = index > current ? 1 : -1
+      const direction =
+        index > current ? 1 : -1
 
-      changeSlide(index, direction)
+      changeSlide(
+        index,
+        direction
+      )
     },
     [changeSlide]
   )
 
-  // Autoplay
+  // AUTOPLAY
   useEffect(() => {
-    clearInterval(intervalRef.current)
+    clearInterval(
+      intervalRef.current
+    )
 
-    if (!isPaused && slides.length > 1) {
-      intervalRef.current = setInterval(() => {
-        if (!animatingRef.current) {
-          goToNextSlide()
-        }
-      }, 3000)
+    if (
+      !isPaused &&
+      slides.length > 1
+    ) {
+      intervalRef.current =
+        setInterval(() => {
+          if (!animatingRef.current) {
+            goToNextSlide()
+          }
+        }, 3000)
     }
 
     return () => {
-      clearInterval(intervalRef.current)
+      clearInterval(
+        intervalRef.current
+      )
     }
-  }, [isPaused, slides.length, goToNextSlide])
+  }, [
+    isPaused,
+    slides.length,
+    goToNextSlide,
+  ])
 
-  // GSAP cleanup
+  // GSAP CLEANUP
   useEffect(() => {
     return () => {
       gsap.killTweensOf([
@@ -169,7 +219,9 @@ function useProjectShowcase(slides) {
   }, [])
 
   const togglePause = () => {
-    setIsPaused((current) => !current)
+    setIsPaused(
+      (current) => !current
+    )
   }
 
   return {
