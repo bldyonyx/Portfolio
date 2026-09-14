@@ -17,7 +17,7 @@ function Skills() {
       title: 'Frameworks',
       skills: skills.frameworks,
       className:
-        'md:-mt-10 md:ml-auto md:mr-8 rotate-[1.5deg] bg-cream',
+        'md:ml-auto md:mr-8 rotate-[1.5deg] bg-cream',
       tapeClass:
         'right-14 rotate-3 bg-pink/70',
     },
@@ -56,7 +56,7 @@ function Skills() {
         </div>
 
         {/* TOOLKIT */}
-        <div className="relative mx-auto max-w-5xl space-y-12 py-8">
+        <div className="relative mx-auto max-w-5xl space-y-8 py-8">
           {skillGroups.map((group) => (
             <SkillCard
               key={group.title}

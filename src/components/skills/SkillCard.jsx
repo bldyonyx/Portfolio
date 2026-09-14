@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+
 function SkillCard({
   number,
   title,
@@ -5,13 +7,130 @@ function SkillCard({
   className,
   tapeClass,
 }) {
+  const skillRefs = useRef([])
+  const timeoutRefs = useRef([])
+  const isHoveredRefs = useRef([])
+
+  useEffect(() => {
+    const startJitter = (element, index) => {
+      if (!element) return
+
+      const scheduleNextJitter = () => {
+        const nextDelay =
+          3000 + Math.random() * 4500
+
+        timeoutRefs.current[index] = setTimeout(
+          jitter,
+          nextDelay
+        )
+      }
+
+      const jitter = () => {
+        if (isHoveredRefs.current[index]) {
+          scheduleNextJitter()
+          return
+        }
+
+        const duration = 900 + Math.random() * 500
+
+        element.animate(
+          [
+            {
+              transform: 'translate(0px, 0px)',
+            },
+            {
+              transform: `translate(
+                ${Math.random() > 0.5 ? '0.8px' : '-0.8px'},
+                -1.5px
+              )`,
+            },
+            {
+              transform: `translate(
+                ${Math.random() > 0.5 ? '0.4px' : '-0.4px'},
+                0.8px
+              )`,
+            },
+            {
+              transform: 'translate(0px, 0px)',
+            },
+          ],
+          {
+            duration,
+            easing: 'ease-in-out',
+          }
+        )
+
+        scheduleNextJitter()
+      }
+
+      const initialDelay =
+        1000 + index * 500 + Math.random() * 1800
+
+      timeoutRefs.current[index] = setTimeout(
+        jitter,
+        initialDelay
+      )
+    }
+
+    skillRefs.current.forEach((element, index) => {
+      startJitter(element, index)
+    })
+
+    return () => {
+      timeoutRefs.current.forEach((timeout) => {
+        clearTimeout(timeout)
+      })
+
+      skillRefs.current.forEach((element) => {
+        element
+          ?.getAnimations()
+          .forEach((animation) => animation.cancel())
+      })
+    }
+  }, [skills])
+
+  const handleMouseEnter = (index) => {
+    isHoveredRefs.current[index] = true
+
+    const element = skillRefs.current[index]
+
+    element
+      ?.getAnimations()
+      .forEach((animation) => animation.cancel())
+  }
+
+  const handleMouseLeave = (index) => {
+    isHoveredRefs.current[index] = false
+  }
+
   return (
     <div
-      className={`relative z-10 w-full max-w-lg border border-wine/20 p-7 text-ink shadow-[7px_9px_0_rgba(0,0,0,0.15)] transition-all duration-300 hover:z-50 hover:rotate-0 ${className}`}
+      className={`
+        relative
+        z-10
+        w-full
+        max-w-lg
+        border
+        border-wine/20
+        p-7
+        text-ink
+        shadow-[7px_9px_0_rgba(0,0,0,0.15)]
+        transition-all
+        duration-300
+        hover:z-50
+        hover:rotate-0
+        ${className}
+      `}
     >
       {/* TAPE */}
       <div
-        className={`absolute -top-4 h-8 w-24 ${tapeClass}`}
+        className={`
+          absolute
+          -top-4
+          h-8
+          w-24
+          ${tapeClass}
+        `}
       />
 
       {/* NUMBER */}
@@ -26,9 +145,14 @@ function SkillCard({
 
       {/* SKILLS */}
       <div className="flex flex-wrap gap-3">
-        {skills.map((skill) => (
+        {skills.map((skill, index) => (
           <div
             key={skill.name}
+            ref={(element) => {
+              skillRefs.current[index] = element
+            }}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={() => handleMouseLeave(index)}
             className="group relative"
           >
             {/* SKILL BUTTON */}
@@ -66,13 +190,13 @@ function SkillCard({
                 top-full
                 z-[100]
                 mt-4
-                w-56
+                w-64
                 -translate-x-1/2
                 -translate-y-2
                 border
-                border-wine/20
+                border-wine/30
                 bg-paper
-                p-4
+                p-5
                 text-ink
                 opacity-0
                 shadow-[6px_7px_0_rgba(0,0,0,0.14)]
@@ -85,21 +209,21 @@ function SkillCard({
               "
             >
               {/* LITTLE ARROW */}
-              <div className="absolute bottom-full left-1/2 h-3 w-3 -translate-x-1/2 translate-y-1/2 rotate-45 border-l border-t border-wine/20 bg-paper" />
+              <div className="absolute bottom-full left-1/2 h-3 w-3 -translate-x-1/2 translate-y-1/2 rotate-45 border-l border-t border-wine/30 bg-paper" />
 
               {/* POPUP HEADER */}
-              <div className="mb-3 flex items-center justify-between border-b border-wine/15 pb-2">
-                <span className="font-typewriter text-[9px] uppercase tracking-[0.2em] text-wine/60">
+              <div className="mb-3 flex items-center justify-between border-b border-wine/25 pb-3">
+                <span className="font-typewriter text-[10px] uppercase tracking-[0.18em] text-wine/80">
                   {skill.name}
                 </span>
 
-                <span className="font-typewriter text-[9px] text-wine/50">
+                <span className="font-typewriter text-[10px] text-wine/65">
                   ♡
                 </span>
               </div>
 
               {/* DESCRIPTION */}
-              <p className="font-typewriter text-[11px] leading-5 text-ink/70">
+              <p className="font-typewriter text-[13px] leading-6 text-ink/85">
                 {skill.description}
               </p>
             </div>
