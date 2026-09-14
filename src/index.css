@@ -146,3 +146,18 @@ body {
     opacity: 0;
   }
 }
+
+/* ========================================
+   PROJECT ARROW
+======================================== */
+
+@keyframes project-arrow-float {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(4px);
+  }
+}

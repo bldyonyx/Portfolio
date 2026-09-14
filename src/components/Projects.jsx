@@ -13,43 +13,71 @@ function Projects() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia()
+      const cards = cardRefs.current.filter(Boolean)
 
-      mm.add('(min-width: 1024px)', () => {
-        const cards = cardRefs.current.filter(Boolean)
+      cards.forEach((card) => {
+        const image = card.querySelector('[data-project-image]')
+        const info = card.querySelector('[data-project-info]')
+        const status = card.querySelector('[data-project-status]')
 
-        cards.forEach((card, index) => {
-          const nextCard = cards[index + 1]
+        if (!image || !info) return
 
-          if (!nextCard) return
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 82%',
+            once: true,
+          },
+        })
 
-          gsap.fromTo(
-            card,
+        timeline
+          .fromTo(
+            image,
             {
-              scale: 1,
-              y: 0,
-              opacity: 1,
+              y: 22,
+              opacity: 0,
             },
             {
-              scale: 0.985,
-              y: -8,
-              opacity: 0.96,
-              ease: 'none',
-
-              scrollTrigger: {
-                trigger: nextCard,
-                start: 'top 85%',
-                end: 'top 18%',
-                scrub: true,
-              },
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              ease: 'power3.out',
             }
           )
-        })
-      })
+          .fromTo(
+            info,
+            {
+              x: 16,
+              opacity: 0,
+            },
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.65,
+              ease: 'power3.out',
+            },
+            '-=0.38'
+          )
 
-      return () => {
-        mm.revert()
-      }
+        if (status) {
+          timeline.fromTo(
+            status,
+            {
+              scale: 1.35,
+              rotate: -8,
+              opacity: 0,
+            },
+            {
+              scale: 1,
+              rotate: -2,
+              opacity: 1,
+              duration: 0.45,
+              ease: 'back.out(2)',
+            },
+            '-=0.18'
+          )
+        }
+      })
     }, sectionRef)
 
     return () => {
@@ -75,8 +103,6 @@ function Projects() {
       "
     >
       <div className="mx-auto max-w-6xl">
-
-        {/* SECTION HEADING */}
         <div className="mb-16 text-center md:mb-20">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
             02 — selected work
@@ -93,7 +119,6 @@ function Projects() {
           </p>
         </div>
 
-        {/* PROJECTS */}
         <div className="mx-auto max-w-5xl">
           {projects.map((project, index) => (
             <div
