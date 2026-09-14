@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import projects from '../data/projects'
-import ProjectCard from './ProjectCard'
+import ProjectCard from './projects/ProjectCard'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -34,15 +34,12 @@ function Projects() {
               scale: 0.985,
               y: -8,
               opacity: 0.96,
-
               ease: 'none',
 
               scrollTrigger: {
                 trigger: nextCard,
-
                 start: 'top 85%',
                 end: 'top 18%',
-
                 scrub: true,
               },
             }
@@ -79,10 +76,7 @@ function Projects() {
     >
       <div className="mx-auto max-w-6xl">
 
-        {/* ========================================
-            SECTION HEADING
-        ======================================== */}
-
+        {/* SECTION HEADING */}
         <div className="mb-16 text-center md:mb-20">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
             02 — selected work
@@ -99,10 +93,7 @@ function Projects() {
           </p>
         </div>
 
-        {/* ========================================
-            PROJECTS
-        ======================================== */}
-
+        {/* PROJECTS */}
         <div className="mx-auto max-w-5xl">
           {projects.map((project, index) => (
             <div
@@ -114,7 +105,6 @@ function Projects() {
                 relative
                 mb-16
                 sm:mb-20
-
                 lg:sticky
                 lg:[top:calc(6rem+var(--stack-index)*1.125rem)]
               "
@@ -131,7 +121,6 @@ function Projects() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   )
