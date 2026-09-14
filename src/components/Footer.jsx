@@ -1,9 +1,74 @@
+import { useEffect, useRef } from 'react'
+import { GitBranch } from 'lucide-react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
 function Footer() {
+  const stack = [
+    'React',
+    'JavaScript',
+    'Tailwind CSS',
+    'Vite',
+  ]
+
+  const techRef = useRef(null)
+  const tagsRef = useRef([])
+
+  useEffect(() => {
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        techRef.current,
+        {
+          opacity: 0,
+          y: 14,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: techRef.current,
+            start: 'top 90%',
+            once: true,
+          },
+        }
+      )
+
+      gsap.fromTo(
+        tagsRef.current,
+        {
+          opacity: 0,
+          y: 10,
+          scale: 0.97,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.45,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: techRef.current,
+            start: 'top 88%',
+            once: true,
+          },
+        }
+      )
+    }, techRef)
+
+    return () => context.revert()
+  }, [])
+
   return (
     <footer className="hero-dots bg-dark px-6 pb-10 text-paper lg:px-8">
       <div className="mx-auto max-w-6xl border-t border-paper/15 pt-10">
 
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        {/* MAIN */}
+        <div className="grid gap-10 md:grid-cols-[1fr_auto_1fr] md:items-end">
 
           {/* LEFT */}
           <div>
@@ -18,11 +83,80 @@ function Footer() {
             </p>
           </div>
 
+          {/* TECH STACK */}
+          <div
+            ref={techRef}
+            className="flex flex-col items-start md:items-center"
+          >
+            <p className="font-typewriter text-[9px] uppercase tracking-[0.2em] text-paper/45">
+              &lt;/&gt; built with
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-2 md:justify-center">
+              {stack.map((tech, index) => (
+                <span
+                  key={tech}
+                  ref={(element) => {
+                    tagsRef.current[index] = element
+                  }}
+                  className="
+                    border
+                    border-paper/15
+                    bg-paper/[0.03]
+                    px-5
+                    py-2.5
+                    font-typewriter
+                    text-[9px]
+                    uppercase
+                    tracking-[0.14em]
+                    text-paper/65
+                    transition-all
+                    duration-300
+                    hover:-translate-y-0.5
+                    hover:border-pink/40
+                    hover:bg-pink/10
+                    hover:text-paper
+                  "
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
           {/* RIGHT */}
-          <div className="md:text-right">
+          <div className="flex flex-col gap-4 md:items-end">
             <p className="font-hand text-2xl text-paper">
               see you around ♡
             </p>
+
+            <a
+              href="https://github.com/bldyonyx"
+              target="_blank"
+              rel="noreferrer"
+              className="
+                group
+                inline-flex
+                items-center
+                gap-2
+                font-typewriter
+                text-[10px]
+                uppercase
+                tracking-[0.16em]
+                text-paper/60
+                transition-colors
+                duration-300
+                hover:text-paper
+              "
+            >
+              <GitBranch
+                size={12}
+                strokeWidth={1.5}
+                className="transition-transform duration-300 group-hover:-rotate-6"
+              />
+
+              github
+            </a>
           </div>
         </div>
 
@@ -32,7 +166,7 @@ function Footer() {
             © 2026 Maya
           </span>
 
-          <span className="text-paper">
+          <span className="text-paper/50">
             ഒ
           </span>
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-const handwrittenText = 'September'
+const handwrittenText = 'September 2026'
 
 function GithubTimelineNote() {
   const [typedText, setTypedText] = useState('')

@@ -113,7 +113,7 @@ function GithubSection() {
                   </p>
 
                   <p className="font-typewriter text-[11px] leading-5 text-wine/70">
-                    joined GitHub near the end of
+                    joined GitHub on : 
                   </p>
 
                   <GithubTimelineNote />
