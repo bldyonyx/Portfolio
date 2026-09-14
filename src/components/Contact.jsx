@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { GitBranch } from 'lucide-react'
+import {
+  ArrowRight,
+  ExternalLink,
+  GitBranch,
+} from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -112,7 +116,7 @@ function Contact() {
             <div className="mx-auto mt-12 max-w-xl text-center">
               {/* GREETING */}
               <div className="flex justify-center">
-                <p className="-translate-x-5 -rotate-2 font-hand text-3xl text-wine md:text-4xl">
+                <p className="-translate-x-1 -rotate-2 font-hand text-3xl text-wine md:text-4xl">
                   hi there !
                 </p>
               </div>
@@ -128,9 +132,15 @@ function Contact() {
               <button
                 type="button"
                 onClick={() => setFormOpen(true)}
-                className="mt-9 border border-wine bg-wine px-7 py-3 font-typewriter text-xs text-paper shadow-[4px_5px_0_rgba(104,69,80,0.15)] transition-all duration-300 hover:-translate-y-1 hover:bg-dark"
+                className="group mt-9 inline-flex items-center gap-2 border border-wine bg-wine px-7 py-3 font-typewriter text-xs text-paper shadow-[4px_5px_0_rgba(104,69,80,0.15)] transition-all duration-300 hover:-translate-y-1 hover:bg-dark"
               >
-                send me a message →
+                <span>send me a message</span>
+
+                <ArrowRight
+                  size={14}
+                  strokeWidth={1.5}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </button>
 
               {/* GITHUB */}
@@ -147,7 +157,13 @@ function Contact() {
                     className="transition-transform duration-300 group-hover:-rotate-6"
                   />
 
-                  <span>github ↗</span>
+                  <span>github</span>
+
+                  <ExternalLink
+                    size={11}
+                    strokeWidth={1.5}
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
                 </a>
               </div>
             </div>
