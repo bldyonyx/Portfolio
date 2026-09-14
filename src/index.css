@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 /* ========================================
    FONTS
 ======================================== */
@@ -29,51 +28,39 @@
   font-display: swap;
 }
 
-
 /* ========================================
    TAILWIND THEME
 ======================================== */
 
 @theme {
-
   /* Fonts */
-
   --font-display: "Miracle History", serif;
   --font-typewriter: "Type Machine", monospace;
   --font-hand: "Angelface", cursive;
 
-
   /* Light */
-
-  --color-paper: #F8F1F2;
-  --color-cream: #F3E7E8;
-
+  --color-paper: #f8f1f2;
+  --color-cream: #f3e7e8;
 
   /* Dark */
-
-  --color-ink: #241C1E;
+  --color-ink: #241c1e;
   --color-dark: #302426;
 
-
   /* Pinks */
-
-  --color-pink: #E3C4CA;
-  --color-blush: #D7AEB8;
-
+  --color-pink: #e3c4ca;
+  --color-blush: #d7aeb8;
 
   /* Accents */
-
   --color-wine: #684550;
-  --color-mauve: #9B7882;
+  --color-mauve: #9b7882;
 }
-
 
 /* ========================================
    BASE
 ======================================== */
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -84,10 +71,8 @@ body {
   background-color: var(--color-dark);
   color: var(--color-ink);
 
-  /* Main site font */
   font-family: "Type Machine", monospace;
 }
-
 
 /* ========================================
    BACKGROUND PATTERN

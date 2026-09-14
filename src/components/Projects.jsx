@@ -1,15 +1,89 @@
+import { useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
 import projects from '../data/projects'
 import ProjectCard from './ProjectCard'
 
+gsap.registerPlugin(ScrollTrigger)
+
 function Projects() {
+  const sectionRef = useRef(null)
+  const cardRefs = useRef([])
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia()
+
+      mm.add('(min-width: 1024px)', () => {
+        const cards = cardRefs.current.filter(Boolean)
+
+        cards.forEach((card, index) => {
+          const nextCard = cards[index + 1]
+
+          if (!nextCard) return
+
+          gsap.fromTo(
+            card,
+            {
+              scale: 1,
+              y: 0,
+              opacity: 1,
+            },
+            {
+              scale: 0.985,
+              y: -8,
+              opacity: 0.96,
+
+              ease: 'none',
+
+              scrollTrigger: {
+                trigger: nextCard,
+
+                start: 'top 85%',
+                end: 'top 18%',
+
+                scrub: true,
+              },
+            }
+          )
+        })
+      })
+
+      return () => {
+        mm.revert()
+      }
+    }, sectionRef)
+
+    return () => {
+      ctx.revert()
+    }
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       id="projects"
-      className="hero-dots bg-dark px-6 py-24 text-paper lg:px-8 lg:py-32"
+      className="
+        hero-dots
+        bg-dark
+        px-4
+        pb-24
+        pt-24
+        text-paper
+        sm:px-6
+        lg:px-8
+        lg:pb-32
+        lg:pt-32
+      "
     >
       <div className="mx-auto max-w-6xl">
-        {/* SECTION HEADING */}
-        <div className="mb-20 text-center">
+
+        {/* ========================================
+            SECTION HEADING
+        ======================================== */}
+
+        <div className="mb-16 text-center md:mb-20">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
             02 — selected work
           </p>
@@ -25,17 +99,39 @@ function Projects() {
           </p>
         </div>
 
-        {/* PROJECT STACK */}
-        <div className="mx-auto max-w-5xl space-y-24">
+        {/* ========================================
+            PROJECTS
+        ======================================== */}
+
+        <div className="mx-auto max-w-5xl">
           {projects.map((project, index) => (
-            <ProjectCard
+            <div
               key={project.slug}
-              project={project}
-              index={index}
-              total={projects.length}
-            />
+              ref={(element) => {
+                cardRefs.current[index] = element
+              }}
+              className="
+                relative
+                mb-16
+                sm:mb-20
+
+                lg:sticky
+                lg:[top:calc(6rem+var(--stack-index)*1.125rem)]
+              "
+              style={{
+                '--stack-index': index,
+                zIndex: index + 1,
+              }}
+            >
+              <ProjectCard
+                project={project}
+                index={index}
+                total={projects.length}
+              />
+            </div>
           ))}
         </div>
+
       </div>
     </section>
   )

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 
 function ProjectCard({ project, index, total }) {
   const number = String(index + 1).padStart(2, '0')
@@ -6,7 +7,6 @@ function ProjectCard({ project, index, total }) {
 
   return (
     <article className="relative mx-auto max-w-5xl">
-
       {/* PAPER BEHIND */}
       <div className="absolute inset-4 rotate-[1.5deg] border border-wine/15 bg-cream" />
 
@@ -14,23 +14,32 @@ function ProjectCard({ project, index, total }) {
       <div className="absolute inset-2 -rotate-[1deg] border border-wine/10 bg-pink/20" />
 
       {/* MAIN CARD */}
-      <div className="relative border border-wine/20 bg-paper px-6 py-8 text-ink shadow-[8px_10px_0_rgba(104,69,80,0.08)] md:px-10 md:py-10 lg:px-12">
-
+      <div
+        className="
+          relative
+          border
+          border-wine/20
+          bg-paper
+          px-6
+          py-8
+          text-ink
+          shadow-[8px_10px_0_rgba(104,69,80,0.08)]
+          md:px-10
+          md:py-10
+          lg:px-12
+        "
+      >
         {/* TAPE */}
         <div className="absolute -top-4 left-1/2 h-8 w-28 -translate-x-1/2 -rotate-2 bg-blush/60" />
 
         {/* PROJECT COUNT */}
         <div className="mb-8 flex items-center justify-between font-typewriter text-[10px] uppercase tracking-[0.25em] text-wine/55">
           <span>project {number}</span>
-
-          <span>
-            {number} / {totalProjects}
-          </span>
+          <span>{number} / {totalProjects}</span>
         </div>
 
         {/* CONTENT */}
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-
           {/* SCREENSHOT */}
           <div className="relative">
             <div className="border border-wine/15 bg-cream p-3">
@@ -38,7 +47,16 @@ function ProjectCard({ project, index, total }) {
                 <img
                   src={project.image}
                   alt={`${project.title} project preview`}
-                  className="h-full w-full object-cover object-center"
+                  className="
+                    h-full
+                    w-full
+                    object-cover
+                    object-center
+                    transition-transform
+                    duration-700
+                    ease-out
+                    hover:scale-[1.015]
+                  "
                 />
               </div>
             </div>
@@ -57,19 +75,58 @@ function ProjectCard({ project, index, total }) {
           </div>
 
           {/* INFO */}
-          <div className="text-ink">
+          <div className="flex h-full flex-col justify-center text-ink">
+            {/* TITLE + MOBILE CTA */}
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-3">
+                <h3 className="font-display text-5xl text-ink md:text-6xl">
+                  {project.title}
+                </h3>
 
-            {/* TITLE + STATUS */}
-            <div className="mb-5 flex flex-wrap items-center gap-3">
-              <h3 className="font-display text-5xl text-ink md:text-6xl">
-                {project.title}
-              </h3>
+                {project.status && (
+                  <span className="-rotate-2 border border-wine/25 bg-cream px-3 py-1 font-typewriter text-[10px] uppercase tracking-wider text-wine">
+                    {project.status}
+                  </span>
+                )}
+              </div>
 
-              {project.status && (
-                <span className="-rotate-2 border border-wine/25 bg-cream px-3 py-1 font-typewriter text-[10px] uppercase tracking-wider text-wine">
-                  {project.status}
-                </span>
-              )}
+              {/* MOBILE VIEW PROJECT */}
+              <Link
+                to={`/projects/${project.slug}`}
+                className="
+                  group
+                  inline-flex
+                  shrink-0
+                  items-center
+                  gap-1.5
+                  border-b
+                  border-wine
+                  pb-1
+                  font-typewriter
+                  text-[10px]
+                  uppercase
+                  tracking-[0.12em]
+                  text-wine
+                  transition-colors
+                  duration-300
+                  hover:border-pink
+                  hover:text-pink
+                  md:hidden
+                "
+              >
+                <span>view</span>
+
+                <ArrowRight
+                  size={12}
+                  strokeWidth={1.7}
+                  aria-hidden="true"
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                  "
+                />
+              </Link>
             </div>
 
             {/* DESCRIPTION */}
@@ -89,20 +146,39 @@ function ProjectCard({ project, index, total }) {
               ))}
             </div>
 
-            {/* PROJECT LINK */}
-            <div className="mt-8 font-typewriter text-xs">
+            {/* DESKTOP / TABLET VIEW PROJECT */}
+            <div className="mt-8 hidden font-typewriter text-xs md:block">
               <Link
                 to={`/projects/${project.slug}`}
-                className="border-b border-wine pb-1 text-wine transition-all duration-300 hover:border-pink hover:text-pink"
+                className="
+                  group
+                  inline-flex
+                  items-center
+                  gap-2
+                  border-b
+                  border-wine
+                  pb-1
+                  text-wine
+                  transition-colors
+                  duration-300
+                  hover:border-pink
+                  hover:text-pink
+                "
               >
-                view project →
+                <span>view project</span>
+
+                <ArrowRight
+                  size={13}
+                  strokeWidth={1.7}
+                  aria-hidden="true"
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                  "
+                />
               </Link>
             </div>
-
-            {/* DECORATIVE TEXT */}
-            <p className="mt-10 font-hand text-2xl text-wine/65">
-              keep scrolling ♡
-            </p>
           </div>
         </div>
       </div>
