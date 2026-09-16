@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [progress, setProgress] = useState(0)
+
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +38,15 @@ function Navbar() {
     }
   }, [])
 
+  const handleHomeClick = () => {
+    if (location.pathname === '/') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    }
+  }
+
   return (
     <nav
       className={`
@@ -60,6 +71,7 @@ function Navbar() {
           {/* LOGO */}
           <Link
             to="/"
+            onClick={handleHomeClick}
             className="font-typewriter text-lg tracking-wide transition-colors duration-300 hover:text-pink"
           >
             maya ഒ
@@ -69,6 +81,7 @@ function Navbar() {
           <div className="hidden items-center gap-10 font-typewriter text-sm md:flex">
             <Link
               to="/"
+              onClick={handleHomeClick}
               className="transition-colors duration-300 hover:text-pink"
             >
               home
