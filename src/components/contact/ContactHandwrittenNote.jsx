@@ -55,12 +55,21 @@ function ContactHandwrittenNote() {
       ref={noteRef}
       className="
         absolute
-        bottom-8
-        right-8
+        bottom-6
+        left-1/2
         min-h-9.5
-        w-60
-        -rotate-3
-        text-left
+        w-[calc(100%-3rem)]
+        -translate-x-1/2
+        -rotate-2
+        text-center
+
+        md:bottom-8
+        md:left-auto
+        md:right-8
+        md:w-60
+        md:translate-x-0
+        md:-rotate-3
+        md:text-left
       "
     >
       <span className="font-hand text-3xl leading-none text-wine">
