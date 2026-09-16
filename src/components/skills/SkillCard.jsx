@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function SkillCard({
   number,
@@ -10,6 +10,9 @@ function SkillCard({
   const skillRefs = useRef([])
   const timeoutRefs = useRef([])
   const isHoveredRefs = useRef([])
+  const cardRef = useRef(null)
+
+  const [activeSkill, setActiveSkill] = useState(null)
 
   useEffect(() => {
     const startJitter = (element, index) => {
@@ -89,6 +92,23 @@ function SkillCard({
     }
   }, [skills])
 
+  useEffect(() => {
+    const handlePointerDown = (event) => {
+      if (!cardRef.current?.contains(event.target)) {
+        setActiveSkill(null)
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+
+    return () => {
+      document.removeEventListener(
+        'pointerdown',
+        handlePointerDown
+      )
+    }
+  }, [])
+
   const handleMouseEnter = (index) => {
     isHoveredRefs.current[index] = true
 
@@ -103,8 +123,15 @@ function SkillCard({
     isHoveredRefs.current[index] = false
   }
 
+  const handleSkillClick = (index) => {
+    setActiveSkill((current) =>
+      current === index ? null : index
+    )
+  }
+
   return (
     <div
+      ref={cardRef}
       className={`
         relative
         z-10
@@ -145,91 +172,143 @@ function SkillCard({
 
       {/* SKILLS */}
       <div className="flex flex-wrap gap-3">
-        {skills.map((skill, index) => (
-          <div
-            key={skill.name}
-            ref={(element) => {
-              skillRefs.current[index] = element
-            }}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => handleMouseLeave(index)}
-            className="group relative"
-          >
-            {/* SKILL BUTTON */}
+        {skills.map((skill, index) => {
+          const isActive = activeSkill === index
+
+          return (
             <div
-              className="
-                cursor-default
-                border
-                border-wine/20
-                bg-paper/75
-                px-4
-                py-2
-                font-typewriter
-                text-xs
-                text-wine
-                transition-all
-                duration-300
-
-                group-hover:-translate-y-1
-                group-hover:rotate-1
-                group-hover:border-wine/50
-                group-hover:bg-wine
-                group-hover:text-paper
-                group-hover:shadow-[3px_4px_0_rgba(104,69,80,0.16)]
-              "
+              key={skill.name}
+              ref={(element) => {
+                skillRefs.current[index] = element
+              }}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
+              className="group relative"
             >
-              {skill.name}
-            </div>
+              {/* SKILL BUTTON */}
+<button
+  type="button"
+  onClick={() => handleSkillClick(index)}
+  aria-expanded={isActive}
+  className={`
+    cursor-default
+    border
+    px-4
+    py-2
+    font-typewriter
+    text-xs
+    transition-all
+    duration-300
 
-            {/* HOVER POPUP */}
-            <div
-              className="
-                pointer-events-none
-                absolute
-                left-1/2
-                top-full
-                z-100
-                mt-4
-                w-64
-                -translate-x-1/2
-                -translate-y-2
-                border
-                border-wine/30
-                bg-paper
-                p-5
-                text-ink
-                opacity-0
-                shadow-[6px_7px_0_rgba(0,0,0,0.14)]
-                transition-all
-                duration-300
+    md:group-hover:-translate-y-1
+    md:group-hover:rotate-1
+    md:group-hover:border-wine/50
+    md:group-hover:bg-wine
+    md:group-hover:text-paper
+    md:group-hover:shadow-[3px_4px_0_rgba(104,69,80,0.16)]
 
-                group-hover:pointer-events-auto
-                group-hover:translate-y-0
-                group-hover:opacity-100
-              "
-            >
-              {/* LITTLE ARROW */}
-              <div className="absolute bottom-full left-1/2 h-3 w-3 -translate-x-1/2 translate-y-1/2 rotate-45 border-l border-t border-wine/30 bg-paper" />
+    ${
+      isActive
+        ? '-translate-y-1 rotate-1 border-wine/50 bg-wine text-paper shadow-[3px_4px_0_rgba(104,69,80,0.16)]'
+        : 'border-wine/20 bg-paper/75 text-wine'
+    }
+  `}
+>
+  {skill.name}
+</button>
 
-              {/* POPUP HEADER */}
-              <div className="mb-3 flex items-center justify-between border-b border-wine/25 pb-3">
-                <span className="font-typewriter text-[10px] uppercase tracking-[0.18em] text-wine/80">
-                  {skill.name}
-                </span>
+              {/* DESKTOP HOVER POPUP */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  left-1/2
+                  top-full
+                  z-100
+                  mt-4
+                  hidden
+                  w-64
+                  -translate-x-1/2
+                  -translate-y-2
+                  border
+                  border-wine/30
+                  bg-paper
+                  p-5
+                  text-ink
+                  opacity-0
+                  shadow-[6px_7px_0_rgba(0,0,0,0.14)]
+                  transition-all
+                  duration-300
 
-                <span className="font-typewriter text-[10px] text-wine/65">
-                  ♡
-                </span>
+                  md:block
+                  md:group-hover:pointer-events-auto
+                  md:group-hover:translate-y-0
+                  md:group-hover:opacity-100
+                "
+              >
+                {/* LITTLE ARROW */}
+                <div className="absolute bottom-full left-1/2 h-3 w-3 -translate-x-1/2 translate-y-1/2 rotate-45 border-l border-t border-wine/30 bg-paper" />
+
+                {/* POPUP HEADER */}
+                <div className="mb-3 flex items-center justify-between border-b border-wine/25 pb-3">
+                  <span className="font-typewriter text-[10px] uppercase tracking-[0.18em] text-wine/80">
+                    {skill.name}
+                  </span>
+
+                  <span className="font-typewriter text-[10px] text-wine/65">
+                    ♡
+                  </span>
+                </div>
+
+                {/* DESCRIPTION */}
+                <p className="font-typewriter text-[13px] leading-6 text-ink/85">
+                  {skill.description}
+                </p>
               </div>
-
-              {/* DESCRIPTION */}
-              <p className="font-typewriter text-[13px] leading-6 text-ink/85">
-                {skill.description}
-              </p>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
+
+      {/* MOBILE CLICK POPUP */}
+      {activeSkill !== null && (
+        <div
+          className="
+            relative
+            z-40
+            mt-5
+            w-full
+            border
+            border-wine/30
+            bg-paper
+            p-5
+            text-ink
+            shadow-[6px_7px_0_rgba(0,0,0,0.14)]
+            md:hidden
+          "
+        >
+          {/* POPUP HEADER */}
+          <div className="mb-3 flex items-center justify-between border-b border-wine/25 pb-3">
+            <span className="font-typewriter text-[10px] uppercase tracking-[0.18em] text-wine/80">
+              {skills[activeSkill].name}
+            </span>
+
+            <button
+              type="button"
+              onClick={() => setActiveSkill(null)}
+              aria-label={`Close ${skills[activeSkill].name} details`}
+              className="font-typewriter text-[10px] text-wine/65"
+            >
+              ×
+            </button>
+          </div>
+
+          {/* DESCRIPTION */}
+          <p className="font-typewriter text-[13px] leading-6 text-ink/85">
+            {skills[activeSkill].description}
+          </p>
+        </div>
+      )}
 
       {/* FRONTEND HEART */}
       {number === '01' && (
