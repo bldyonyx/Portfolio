@@ -51,7 +51,7 @@ function Hero() {
               ✦
             </span>
 
-            <span className="pointer-events-none absolute bottom-6 right-7 text-xs text-wine/65">
+            <span className="pointer-events-none absolute bottom-6 right-7 hidden text-xs text-wine/65 min-[422px]:block">
               ♡⸝⸝
             </span>
           </div>

@@ -1,4 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 const LEVEL_COLORS = [
   '#e8d8dc',
@@ -14,6 +19,7 @@ function GithubCalendar({ username }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [tooltip, setTooltip] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
 
   const calendarRef = useRef(null)
 
@@ -28,7 +34,9 @@ function GithubCalendar({ username }) {
         )
 
         if (!response.ok) {
-          throw new Error('Could not load GitHub contributions')
+          throw new Error(
+            'Could not load GitHub contributions'
+          )
         }
 
         const data = await response.json()
@@ -45,6 +53,27 @@ function GithubCalendar({ username }) {
 
     loadContributions()
   }, [username])
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      '(max-width: 767px)'
+    )
+
+    const updateLayout = () => {
+      setIsMobile(mediaQuery.matches)
+    }
+
+    updateLayout()
+
+    mediaQuery.addEventListener('change', updateLayout)
+
+    return () => {
+      mediaQuery.removeEventListener(
+        'change',
+        updateLayout
+      )
+    }
+  }, [])
 
   const weeks = useMemo(() => {
     if (!contributions.length) return []
@@ -79,11 +108,17 @@ function GithubCalendar({ username }) {
     return groupedWeeks
   }, [contributions])
 
+  const visibleWeeks = useMemo(() => {
+    if (!isMobile) return weeks
+
+    return weeks.slice(-24)
+  }, [weeks, isMobile])
+
   const monthLabels = useMemo(() => {
     const labels = new Map()
     let previousMonth = null
 
-    weeks.forEach((week, index) => {
+    visibleWeeks.forEach((week, index) => {
       const firstDay = week.find(Boolean)
 
       if (!firstDay) return
@@ -104,17 +139,23 @@ function GithubCalendar({ username }) {
     })
 
     return labels
-  }, [weeks])
+  }, [visibleWeeks])
 
   const handleEnter = (event, day) => {
     if (!calendarRef.current) return
 
-    const square = event.currentTarget.getBoundingClientRect()
-    const calendar = calendarRef.current.getBoundingClientRect()
+    const square =
+      event.currentTarget.getBoundingClientRect()
+
+    const calendar =
+      calendarRef.current.getBoundingClientRect()
 
     setTooltip({
       day,
-      x: square.left - calendar.left + square.width / 2,
+      x:
+        square.left -
+        calendar.left +
+        square.width / 2,
       y: square.top - calendar.top,
     })
   }
@@ -143,19 +184,27 @@ function GithubCalendar({ username }) {
   }
 
   return (
-    <div ref={calendarRef} className="relative w-full">
+    <div
+      ref={calendarRef}
+      className="relative w-full"
+    >
+      {/* MOBILE LABEL */}
+      <p className="mb-3 font-typewriter text-[9px] uppercase tracking-[0.16em] text-wine/45 md:hidden">
+        recent activity
+      </p>
+
       {/* MONTH LABELS */}
       <div
         className="mb-3 grid"
         style={{
-          gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))`,
-          gap: 'clamp(1px, 0.25vw, 3px)',
+          gridTemplateColumns: `repeat(${visibleWeeks.length}, minmax(0, 1fr))`,
+          gap: isMobile ? '2px' : 'clamp(1px, 0.25vw, 3px)',
         }}
       >
-        {weeks.map((_, index) => (
+        {visibleWeeks.map((_, index) => (
           <div
             key={index}
-            className="min-w-0 whitespace-nowrap font-typewriter text-[9px] text-wine/65"
+            className="min-w-0 whitespace-nowrap font-typewriter text-[8px] text-wine/65 sm:text-[9px]"
           >
             {monthLabels.get(index) || ''}
           </div>
@@ -166,16 +215,18 @@ function GithubCalendar({ username }) {
       <div
         className="grid w-full"
         style={{
-          gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))`,
-          gap: 'clamp(1px, 0.25vw, 3px)',
+          gridTemplateColumns: `repeat(${visibleWeeks.length}, minmax(0, 1fr))`,
+          gap: isMobile ? '2px' : 'clamp(1px, 0.25vw, 3px)',
         }}
       >
-        {weeks.map((week, weekIndex) => (
+        {visibleWeeks.map((week, weekIndex) => (
           <div
             key={weekIndex}
             className="grid min-w-0 grid-rows-7"
             style={{
-              gap: 'clamp(1px, 0.25vw, 3px)',
+              gap: isMobile
+                ? '2px'
+                : 'clamp(1px, 0.25vw, 3px)',
             }}
           >
             {week.map((day, dayIndex) => {
@@ -230,7 +281,7 @@ function GithubCalendar({ username }) {
       </div>
 
       {/* BOTTOM INFO */}
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-wine/10 pt-4 font-typewriter text-[10px] text-wine/70">
+      <div className="mt-6 flex flex-col items-start gap-3 border-t border-wine/10 pt-4 font-typewriter text-[10px] text-wine/70 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4">
         <span>
           <strong className="font-normal text-wine">
             {total}
@@ -239,7 +290,9 @@ function GithubCalendar({ username }) {
         </span>
 
         <div className="flex items-center gap-2">
-          <span className="text-wine/55">Less</span>
+          <span className="text-wine/55">
+            Less
+          </span>
 
           <div className="flex items-center gap-1">
             {LEVEL_COLORS.map((color) => (
@@ -253,7 +306,9 @@ function GithubCalendar({ username }) {
             ))}
           </div>
 
-          <span className="text-wine/55">More</span>
+          <span className="text-wine/55">
+            More
+          </span>
         </div>
       </div>
 
@@ -265,6 +320,7 @@ function GithubCalendar({ username }) {
             absolute
             z-30
             w-max
+            max-w-[calc(100%-1rem)]
             -translate-x-1/2
             -translate-y-full
             border
