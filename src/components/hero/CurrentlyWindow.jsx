@@ -33,7 +33,7 @@ function CurrentlyWindow() {
       className="
         absolute
         -bottom-6
-        -right-8
+        -right-10
         z-40
         w-40
         rotate-1
@@ -41,9 +41,11 @@ function CurrentlyWindow() {
         border-wine/30
         bg-paper
         shadow-[5px_7px_16px_rgba(104,69,80,0.16)]
-        sm:-right-10
+        sm:-right-12
         lg:-bottom-5
-        lg:right-0
+        lg:-right-4
+        xl:-right-6
+        2xl:-right-8
       "
     >
       {/* WINDOW HEADER */}
@@ -116,7 +118,6 @@ function CurrentlyWindow() {
           <span className="whitespace-nowrap font-typewriter text-[8px] text-ink/65">
             learning in progress
           </span>
-
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import DevelopingLabel from './DevelopingLabel'
 import CurrentlyWindow from './CurrentlyWindow'
+import selfie from '../../assets/images/mee.jpg'
 
 function HeroCollage() {
   return (
@@ -18,7 +19,7 @@ function HeroCollage() {
         lg:-translate-y-1
         xl:-translate-x-20
         2xl:-translate-x-24
-        min-[1800px]:!-translate-x-28
+        min-[1800px]:-translate-x-28!
       "
     >
       <div className="relative">
@@ -36,11 +37,11 @@ function HeroCollage() {
 
           {/* PHOTO */}
           <div className="aspect-4/5 overflow-hidden bg-pink/30">
-            <div className="flex h-full items-center justify-center bg-[linear-gradient(145deg,#ead7da,#f4e8e9)]">
-              <span className="text-3xl text-wine/80">
-                ꒰ ᧔ෆ᧓ ꒱
-              </span>
-            </div>
+            <img
+              src={selfie}
+              alt="Maya"
+              className="h-full w-full object-cover"
+            />
           </div>
 
           {/* BOTTOM HEART */}

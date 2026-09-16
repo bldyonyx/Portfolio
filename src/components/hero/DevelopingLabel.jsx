@@ -1,6 +1,21 @@
 function DevelopingLabel() {
   return (
-    <div className="absolute left-4 top-4 z-20 -rotate-2 bg-wine/45 px-3.5 py-1.5">
+    <div
+      className="
+        absolute
+        -left-7
+        -top-3
+        z-20
+        -rotate-2
+        bg-wine/70
+        px-3.5
+        py-1.5
+        sm:-left-8
+        lg:-left-7
+        lg:-top-4
+        xl:-left-8
+      "
+    >
       <span className="inline-flex items-center font-typewriter text-[10px] text-paper">
         <span>♡&nbsp;</span>
 
