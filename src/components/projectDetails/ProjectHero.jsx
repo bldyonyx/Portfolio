@@ -129,32 +129,32 @@ function ProjectHero({
       ref={heroRef}
       className="px-6 pb-16 pt-10 lg:px-8 lg:pb-20 lg:pt-12"
     >
-      <div className="mx-auto max-w-7xl">
-        {/* TOP NAV */}
-        <div className="flex items-center justify-between gap-5">
-          <button
-            type="button"
-            onClick={onBackToProjects}
-            className="
-              group
-              inline-flex
-              items-center
-              gap-2
-              border
-              border-paper/20
-              bg-paper
-              px-4
-              py-2.5
-              font-typewriter
-              text-[10px]
-              text-wine
-              shadow-[4px_5px_0_rgba(0,0,0,0.14)]
-              transition-all
-              duration-300
-              hover:-translate-x-1
-              hover:bg-pink
-            "
-          >
+          <div className="mx-auto max-w-7xl">
+          {/* TOP NAV */}
+          <div className="flex items-center justify-between gap-5">
+            <button
+              type="button"
+              onClick={onBackToProjects}
+              className="
+                group
+                inline-flex
+                items-center
+                gap-2.5
+                border
+                border-paper/20
+                bg-paper
+                px-5
+                py-3
+                font-typewriter
+                text-xs
+                text-wine
+                shadow-[4px_5px_0_rgba(0,0,0,0.14)]
+                transition-all
+                duration-300
+                hover:-translate-x-1
+                hover:bg-pink
+              "
+            >
             <ArrowLeft
               size={13}
               strokeWidth={1.7}
