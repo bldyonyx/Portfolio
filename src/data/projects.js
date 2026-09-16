@@ -1,15 +1,15 @@
-import colorlyPreview from '../assets/images/projects/colorly-preview.png'
-import colorlyLight from '../assets/images/projects/colorly-light.png'
-import colorlyVibrant from '../assets/images/projects/colorly-vibrant.png'
-import colorlyDark from '../assets/images/projects/colorly-dark.png'
-import colorlyCount from '../assets/images/projects/colorly-count.png'
-import colorlyFromColor from '../assets/images/projects/colorly-from-color.png'
+import colorlyPreview from '../assets/images/projects/colorly/colorly-preview.webp'
+import colorlyLight from '../assets/images/projects/colorly/colorly-light.webp'
+import colorlyVibrant from '../assets/images/projects/colorly/colorly-vibrant.webp'
+import colorlyDark from '../assets/images/projects/colorly/colorly-dark.webp'
+import colorlyCount from '../assets/images/projects/colorly/colorly-count.webp'
+import colorlyFromColor from '../assets/images/projects/colorly/colorly-from-color.webp'
 
-import tasklyPreview from '../assets/images/projects/taskly-preview.png'
-import tasklyCalendar from '../assets/images/projects/taskly-calendar.png'
-import tasklySavedLists from '../assets/images/projects/taskly-saved-lists.png'
-import tasklyFinishedDay from '../assets/images/projects/taskly-finished-day.png'
-import tasklySettings from '../assets/images/projects/taskly-settings.png'
+import tasklyPreview from '../assets/images/projects/taskly/taskly-preview.webp'
+import tasklySettings from '../assets/images/projects/taskly/taskly-settings.webp'
+import tasklyCalendar from '../assets/images/projects/taskly/taskly-calendar.webp'
+import tasklySavedLists from '../assets/images/projects/taskly/taskly-saved-lists.webp'
+import tasklyFinishedDay from '../assets/images/projects/taskly/taskly-finished-day.webp'
 
 const projects = [
   {
@@ -22,7 +22,7 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript', 'Vite'],
 
     github: 'https://github.com/bldyonyx/Colorly',
-    demo: 'https://bldyonyx.github.io/Colorly/',
+    demo: 'https://colorly-maya.web.app',
 
     image: colorlyPreview,
 
@@ -81,7 +81,7 @@ const projects = [
     tech: ['React', 'JavaScript', 'CSS', 'Vite'],
 
     github: 'https://github.com/bldyonyx/Taskly',
-    demo: 'https://bldyonyx.github.io/Taskly/',
+    demo: 'https://taskly-maya.web.app',
 
     image: tasklyPreview,
 

@@ -196,16 +196,24 @@ function ProjectShowcase({ slides }) {
                 <div className="relative self-start overflow-hidden border border-wine/15 bg-cream">
                   <div
                     ref={imageRef}
-                    className="w-full overflow-hidden"
+                    className="
+                      flex
+                      aspect-[1.45/1]
+                      w-full
+                      items-center
+                      justify-center
+                      overflow-hidden
+                    "
                   >
                     <img
                       src={activeSlide.image}
                       alt={activeSlide.title}
                       className={`
                         block
-                        max-h-125
+                        h-full
                         w-full
                         object-contain
+                        object-center
                         transition-transform
                         duration-700
                         ease-out

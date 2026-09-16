@@ -1,6 +1,6 @@
 import DevelopingLabel from './DevelopingLabel'
 import CurrentlyWindow from './CurrentlyWindow'
-import selfie from '../../assets/images/mee.jpg'
+import mee from '../../assets/images/mee.webp'
 
 function HeroCollage() {
   return (
@@ -38,7 +38,7 @@ function HeroCollage() {
           {/* PHOTO */}
           <div className="aspect-4/5 overflow-hidden bg-pink/30">
             <img
-              src={selfie}
+              src={mee}
               alt="Maya"
               className="h-full w-full object-cover"
             />
