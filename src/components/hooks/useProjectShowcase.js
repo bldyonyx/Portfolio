@@ -46,17 +46,17 @@ function useProjectShowcase(slides) {
       image,
       {
         opacity: 0,
-        x: direction > 0 ? 10 : -10,
-        y: 6,
-        scale: 1.012,
+        x: direction > 0 ? 5 : -5,
+        y: 0,
+        scale: 1.006,
       },
       {
         opacity: 1,
         x: 0,
         y: 0,
         scale: 1,
-        duration: 0.7,
-        ease: 'power3.out',
+        duration: 0.5,
+        ease: 'power2.out',
       }
     )
 
@@ -65,15 +65,17 @@ function useProjectShowcase(slides) {
       changingText,
       {
         opacity: 0,
-        y: 8,
+        x: direction > 0 ? 3 : -3,
+        y: 0,
       },
       {
         opacity: 1,
+        x: 0,
         y: 0,
-        duration: 0.52,
+        duration: 0.4,
         ease: 'power2.out',
       },
-      '<0.08'
+      '<0.03'
     )
 
     return () => {
@@ -112,10 +114,10 @@ function useProjectShowcase(slides) {
         image,
         {
           opacity: 0,
-          x: direction > 0 ? -8 : 8,
-          y: -4,
-          scale: 0.992,
-          duration: 0.38,
+          x: direction > 0 ? -4 : 4,
+          y: 0,
+          scale: 0.996,
+          duration: 0.3,
           ease: 'power2.inOut',
         },
         0
@@ -126,11 +128,12 @@ function useProjectShowcase(slides) {
         changingText,
         {
           opacity: 0,
-          y: -6,
-          duration: 0.3,
+          x: direction > 0 ? -3 : 3,
+          y: 0,
+          duration: 0.25,
           ease: 'power2.inOut',
         },
-        0.04
+        0.03
       )
     },
     []
