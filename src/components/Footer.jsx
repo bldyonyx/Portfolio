@@ -65,13 +65,13 @@ function Footer() {
 
   return (
     <footer className="hero-dots bg-dark px-6 pb-10 text-paper lg:px-8">
-      <div className="mx-auto max-w-6xl 2xl:max-w-352 border-t border-paper/15 pt-10">
+      <div className="mx-auto max-w-6xl border-t border-paper/15 pt-10 2xl:max-w-352">
 
         {/* MAIN */}
-        <div className="grid gap-10 md:grid-cols-[1fr_auto_1fr] md:items-end">
+        <div className="grid gap-10 text-center md:grid-cols-[1fr_auto_1fr] md:items-end md:text-left">
 
           {/* LEFT */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <p className="font-typewriter text-lg tracking-wide text-paper">
               maya ഒ
             </p>
@@ -86,13 +86,13 @@ function Footer() {
           {/* TECH STACK */}
           <div
             ref={techRef}
-            className="flex flex-col items-start md:items-center"
+            className="flex flex-col items-center"
           >
             <p className="font-typewriter text-[9px] uppercase tracking-[0.2em] text-paper/45">
               &lt;/&gt; built with
             </p>
 
-            <div className="mt-4 flex flex-wrap gap-2 md:justify-center">
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
               {stack.map((tech, index) => (
                 <span
                   key={tech}
@@ -125,7 +125,7 @@ function Footer() {
           </div>
 
           {/* RIGHT */}
-          <div className="flex flex-col gap-4 md:items-end">
+          <div className="flex flex-col items-center gap-4 md:items-end">
             <p className="font-hand text-2xl text-paper">
               see you around ♡
             </p>
@@ -161,7 +161,7 @@ function Footer() {
         </div>
 
         {/* BOTTOM */}
-        <div className="mt-10 flex items-center justify-between border-t border-paper/10 pt-5 font-typewriter text-[10px] uppercase tracking-[0.2em]">
+        <div className="mt-10 flex flex-col items-center gap-3 border-t border-paper/10 pt-5 font-typewriter text-[10px] uppercase tracking-[0.2em] md:flex-row md:justify-between md:gap-0">
           <span className="text-paper/35">
             © 2026 Maya
           </span>

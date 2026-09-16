@@ -186,36 +186,36 @@ function SkillCard({
               className="group relative"
             >
               {/* SKILL BUTTON */}
-<button
-  type="button"
-  onClick={() => handleSkillClick(index)}
-  aria-expanded={isActive}
-  className={`
-    cursor-default
-    border
-    px-4
-    py-2
-    font-typewriter
-    text-xs
-    transition-all
-    duration-300
+              <button
+                type="button"
+                onClick={() => handleSkillClick(index)}
+                aria-expanded={isActive}
+                className={`
+                  cursor-default
+                  border
+                  px-4
+                  py-2
+                  font-typewriter
+                  text-xs
+                  transition-all
+                  duration-300
 
-    md:group-hover:-translate-y-1
-    md:group-hover:rotate-1
-    md:group-hover:border-wine/50
-    md:group-hover:bg-wine
-    md:group-hover:text-paper
-    md:group-hover:shadow-[3px_4px_0_rgba(104,69,80,0.16)]
+                  md:group-hover:-translate-y-1
+                  md:group-hover:rotate-1
+                  md:group-hover:border-wine/50
+                  md:group-hover:bg-wine
+                  md:group-hover:text-paper
+                  md:group-hover:shadow-[3px_4px_0_rgba(104,69,80,0.16)]
 
-    ${
-      isActive
-        ? '-translate-y-1 rotate-1 border-wine/50 bg-wine text-paper shadow-[3px_4px_0_rgba(104,69,80,0.16)]'
-        : 'border-wine/20 bg-paper/75 text-wine'
-    }
-  `}
->
-  {skill.name}
-</button>
+                  ${
+                    isActive
+                      ? '-translate-y-1 rotate-1 border-wine/50 bg-wine text-paper shadow-[3px_4px_0_rgba(104,69,80,0.16)]'
+                      : 'border-wine/20 bg-paper/75 text-wine'
+                  }
+                `}
+              >
+                {skill.name}
+              </button>
 
               {/* DESKTOP HOVER POPUP */}
               <div
