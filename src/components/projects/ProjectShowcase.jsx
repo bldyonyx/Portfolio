@@ -21,6 +21,8 @@ function ProjectShowcase({ slides }) {
   } = useProjectShowcase(slides)
 
   useLayoutEffect(() => {
+    if (!activeSlide) return
+
     const ctx = gsap.context(() => {
       const label = sectionRef.current?.querySelector(
         '[data-showcase-label]'
@@ -115,7 +117,7 @@ function ProjectShowcase({ slides }) {
     return () => {
       ctx.revert()
     }
-  }, [])
+  }, [activeSlide])
 
   if (!activeSlide) return null
 

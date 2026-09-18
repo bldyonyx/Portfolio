@@ -16,9 +16,17 @@ function Projects() {
       const cards = cardRefs.current.filter(Boolean)
 
       cards.forEach((card) => {
-        const image = card.querySelector('[data-project-image]')
-        const info = card.querySelector('[data-project-info]')
-        const status = card.querySelector('[data-project-status]')
+        const image = card.querySelector(
+          '[data-project-image]'
+        )
+
+        const info = card.querySelector(
+          '[data-project-info]'
+        )
+
+        const status = card.querySelector(
+          '[data-project-status]'
+        )
 
         if (!image || !info) return
 
@@ -103,6 +111,8 @@ function Projects() {
       "
     >
       <div className="mx-auto max-w-6xl min-[1800px]:max-w-7xl">
+
+        {/* SECTION INTRO */}
         <div className="mb-16 text-center md:mb-20">
           <p className="mb-3 font-typewriter text-xs uppercase tracking-[0.3em] text-pink/80">
             02 — selected work
@@ -119,7 +129,15 @@ function Projects() {
           </p>
         </div>
 
-        <div className="mx-auto max-w-5xl min-[1800px]:max-w-6xl">
+        {/* PROJECT STACK */}
+        <div
+          className="
+            relative
+            mx-auto
+            max-w-5xl
+            min-[1800px]:max-w-6xl
+          "
+        >
           {projects.map((project, index) => (
             <div
               key={project.slug}
@@ -130,11 +148,11 @@ function Projects() {
                 relative
                 mb-16
                 sm:mb-20
+                lg:mb-20
                 lg:sticky
-                lg:top-[calc(6rem+var(--stack-index)*1.125rem)]
               "
               style={{
-                '--stack-index': index,
+                top: `calc(6rem + ${index * 4.5}rem)`,
                 zIndex: index + 1,
               }}
             >
@@ -145,6 +163,16 @@ function Projects() {
               />
             </div>
           ))}
+
+          {/* Keeps the sticky stack alive long enough
+              for every previous project header to remain visible */}
+          <div
+            aria-hidden="true"
+            className="hidden lg:block"
+            style={{
+              height: `${(projects.length - 1) * 4.5}rem`,
+            }}
+          />
         </div>
       </div>
     </section>

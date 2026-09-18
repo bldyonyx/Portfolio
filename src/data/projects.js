@@ -11,6 +11,8 @@ import tasklyCalendar from '../assets/images/projects/taskly/taskly-calendar.web
 import tasklySavedLists from '../assets/images/projects/taskly/taskly-saved-lists.webp'
 import tasklyFinishedDay from '../assets/images/projects/taskly/taskly-finished-day.webp'
 
+import dearPagesPreview from '../assets/images/projects/dear-pages/dear-pages-preview.webp'
+
 const projects = [
   {
     title: 'Colorly',
@@ -130,6 +132,34 @@ const projects = [
           'Change the visual theme and adjust Taskly to make the workspace feel more personal.',
       },
     ],
+
+    status: 'work in progress',
+  },
+
+  {
+    title: 'Dear Pages',
+    slug: 'dear-pages',
+
+    description:
+      'A cozy book tracking app for discovering books, building a personal library, and organizing your reading journey. Currently a work in progress.',
+
+    tech: [
+      'React',
+      'JavaScript',
+      'Tailwind CSS',
+      'Vite',
+      'React Router',
+      'Google Books API',
+      'Open Library API',
+    ],
+
+    github: 'https://github.com/bldyonyx/DearPages',
+
+    image: dearPagesPreview,
+
+    details: {
+      main: dearPagesPreview,
+    },
 
     status: 'work in progress',
   },
