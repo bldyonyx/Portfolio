@@ -1,15 +1,25 @@
-import { useLayoutEffect, useRef } from 'react'
+import {
+  Fragment,
+  useLayoutEffect,
+  useRef,
+} from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
 import projects from '../data/projects'
 import ProjectCard from './projects/ProjectCard'
+import ProjectCarousel from './projects/ProjectCarousel'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(
+  ScrollTrigger,
+  ScrollToPlugin
+)
 
 function Projects() {
   const sectionRef = useRef(null)
   const cardRefs = useRef([])
+  const anchorRefs = useRef([])
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -93,21 +103,57 @@ function Projects() {
     }
   }, [])
 
+  const scrollToProject = (index) => {
+    const anchor = anchorRefs.current[index]
+
+    if (!anchor) return
+
+    const rootFontSize = parseFloat(
+      getComputedStyle(
+        document.documentElement
+      ).fontSize
+    )
+
+    const stickyTop =
+      (6 + index * 4.5) * rootFontSize
+
+    const anchorTop =
+      anchor.getBoundingClientRect().top +
+      window.scrollY
+
+    const targetTop =
+      anchorTop - stickyTop
+
+    gsap.to(window, {
+      scrollTo: {
+        y: targetTop,
+        autoKill: true,
+      },
+      duration: 1.25,
+      ease: 'power3.inOut',
+    })
+  }
+
+  const stackSpace =
+    (projects.length - 1) * 4.5
+
+  const stackCompensation =
+    stackSpace / 2
+
   return (
     <section
       ref={sectionRef}
       id="projects"
       className="
         hero-dots
+        relative
         bg-dark
         px-4
-        pb-24
-        pt-24
+        py-24
         text-paper
         sm:px-6
         lg:px-8
-        lg:pb-32
-        lg:pt-32
+        lg:py-32
       "
     >
       <div className="mx-auto max-w-6xl min-[1800px]:max-w-7xl">
@@ -129,52 +175,90 @@ function Projects() {
           </p>
         </div>
 
-        {/* PROJECT STACK */}
+        {/* =================================
+            MOBILE / TABLET CAROUSEL
+        ================================= */}
+        <div className="lg:hidden">
+          <ProjectCarousel
+            projects={projects}
+          />
+        </div>
+
+        {/* =================================
+            DESKTOP STICKY STACK
+        ================================= */}
         <div
           className="
             relative
             mx-auto
+            hidden
             max-w-5xl
+            lg:block
             min-[1800px]:max-w-6xl
           "
         >
           {projects.map((project, index) => (
-            <div
-              key={project.slug}
-              ref={(element) => {
-                cardRefs.current[index] = element
-              }}
-              className="
-                relative
-                mb-16
-                sm:mb-20
-                lg:mb-20
-                lg:sticky
-              "
-              style={{
-                top: `calc(6rem + ${index * 4.5}rem)`,
-                zIndex: index + 1,
-              }}
-            >
-              <ProjectCard
-                project={project}
-                index={index}
-                total={projects.length}
+            <Fragment key={project.slug}>
+
+              {/* NATURAL SCROLL ANCHOR */}
+              <div
+                ref={(element) => {
+                  anchorRefs.current[index] =
+                    element
+                }}
+                aria-hidden="true"
+                className="h-0"
               />
-            </div>
+
+              {/* STICKY PROJECT CARD */}
+              <div
+                ref={(element) => {
+                  cardRefs.current[index] =
+                    element
+                }}
+                className="
+                  relative
+                  mb-20
+                  sticky
+                "
+                style={{
+                  top: `calc(6rem + ${
+                    index * 4.5
+                  }rem)`,
+                  zIndex: index + 1,
+                }}
+              >
+                <ProjectCard
+                  project={project}
+                  index={index}
+                  total={projects.length}
+                  onHeaderClick={() =>
+                    scrollToProject(index)
+                  }
+                />
+              </div>
+            </Fragment>
           ))}
 
-          {/* Keeps the sticky stack alive long enough
-              for every previous project header to remain visible */}
+          {/* TECHNICAL SPACE FOR STICKY STACK */}
           <div
             aria-hidden="true"
-            className="hidden lg:block"
             style={{
-              height: `${(projects.length - 1) * 4.5}rem`,
+              height: `${stackSpace}rem`,
             }}
           />
         </div>
       </div>
+
+      {/* DESKTOP ONLY STACK COMPENSATION */}
+      <div
+        aria-hidden="true"
+        className="hidden lg:block"
+        style={{
+          marginBottom:
+            `-${stackCompensation}rem`,
+        }}
+      />
     </section>
   )
 }

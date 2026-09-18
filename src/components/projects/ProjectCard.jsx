@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
-function ProjectCard({ project, index, total }) {
+function ProjectCard({
+  project,
+  index,
+  total,
+  onHeaderClick,
+}) {
   const number = String(index + 1).padStart(2, '0')
   const totalProjects = String(total).padStart(2, '0')
 
   return (
     <article className="relative mx-auto max-w-5xl min-[1800px]:max-w-6xl">
+
       {/* PAPER BEHIND */}
-      <div className="absolute inset-4 rotate-[1.25deg] border border-wine/15 bg-cream" />
+      <div className="pointer-events-none absolute inset-4 rotate-[1.25deg] border border-wine/15 bg-cream" />
 
       {/* SECOND PAPER LAYER */}
-      <div className="absolute inset-2 rotate-[-0.8deg] border border-wine/10 bg-pink/20" />
+      <div className="pointer-events-none absolute inset-2 rotate-[-0.8deg] border border-wine/10 bg-pink/20" />
 
       {/* MAIN CARD */}
       <div
@@ -30,19 +36,71 @@ function ProjectCard({ project, index, total }) {
         "
       >
         {/* TAPE */}
-        <div className="absolute -top-4 left-1/2 h-8 w-28 -translate-x-1/2 -rotate-2 bg-blush/60" />
+        <div className="pointer-events-none absolute -top-4 left-1/2 h-8 w-28 -translate-x-1/2 -rotate-2 bg-blush/60" />
 
-        {/* PROJECT COUNT */}
-        <div className="mb-8 flex items-center justify-between font-typewriter text-[10px] uppercase tracking-[0.25em] text-wine/50">
-          <span>project {number}</span>
+        {/* PROJECT STACK TAB */}
+        <button
+          type="button"
+          onClick={onHeaderClick}
+          aria-label={`Go to ${project.title}`}
+          className="
+            group
+            -mx-6
+            -mt-8
+            mb-8
+            flex
+            w-[calc(100%+3rem)]
+            cursor-pointer
+            items-center
+            justify-between
+            border-b
+            border-wine/10
+            bg-transparent
+            px-6
+            pb-6
+            pt-8
+            text-left
+            font-typewriter
+            text-[10px]
+            uppercase
+            tracking-[0.25em]
+            text-wine/50
+            transition-colors
+            duration-300
+            hover:bg-cream/40
+            hover:text-wine/80
+            focus-visible:outline-none
+            focus-visible:bg-cream/40
+
+            md:-mx-10
+            md:-mt-10
+            md:w-[calc(100%+5rem)]
+            md:px-10
+            md:pt-10
+
+            lg:-mx-12
+            lg:w-[calc(100%+6rem)]
+            lg:px-12
+          "
+        >
+          <span
+            className="
+              transition-transform
+              duration-300
+              group-hover:translate-x-1
+            "
+          >
+            project {number}
+          </span>
 
           <span>
             {number} / {totalProjects}
           </span>
-        </div>
+        </button>
 
         {/* CONTENT */}
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+
           {/* SCREENSHOT */}
           <div
             data-project-image
@@ -107,6 +165,7 @@ function ProjectCard({ project, index, total }) {
             {/* TITLE + MOBILE CTA */}
             <div className="mb-6">
               <div className="flex items-start justify-between gap-4">
+
                 <div className="flex flex-wrap items-center gap-3">
                   <h3 className="font-display text-5xl leading-none text-ink md:text-6xl">
                     {project.title}
