@@ -65,7 +65,8 @@ function Footer() {
 
   return (
     <footer className="hero-dots bg-dark px-6 pb-10 text-paper lg:px-8">
-      <div className="mx-auto max-w-6xl border-t border-paper/15 pt-10 2xl:max-w-352">
+
+      <div className="w-full border-t border-paper/15 pt-10">
 
         {/* MAIN */}
         <div className="grid gap-10 text-center md:grid-cols-[1fr_auto_1fr] md:items-end md:text-left">
