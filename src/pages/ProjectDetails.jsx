@@ -4,8 +4,10 @@ import { ArrowLeft } from 'lucide-react'
 
 import projects from '../data/projects'
 import projectDetailsContent from '../data/projectDetailsContent'
+import projectRoadmaps from '../data/projectRoadmaps'
 
 import ProjectHero from '../components/projectDetails/ProjectHero'
+import ProjectRoadmap from '../components/projectDetails/ProjectRoadmap'
 import ProjectEnd from '../components/projectDetails/ProjectEnd'
 import BackToTopButton from '../components/projectDetails/BackToTopButton'
 import ProjectShowcase from '../components/projects/ProjectShowcase'
@@ -107,6 +109,9 @@ function ProjectDetails() {
   const copy =
     projectDetailsContent[project.slug]
 
+  const roadmap =
+    projectRoadmaps[project.slug]
+
   // ========================================
   // BACK TO PROJECTS
   // ========================================
@@ -144,6 +149,13 @@ function ProjectDetails() {
       <div className="px-6 lg:px-8">
         <ProjectShowcase
           slides={project.slides ?? []}
+        />
+      </div>
+
+      {/* PROJECT ROADMAP */}
+      <div className="px-6 lg:px-8">
+        <ProjectRoadmap
+          roadmap={roadmap}
         />
       </div>
 
