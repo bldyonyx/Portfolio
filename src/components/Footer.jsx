@@ -15,6 +15,21 @@ function Footer() {
 
   const techRef = useRef(null)
   const tagsRef = useRef([])
+  const updatedRef = useRef(null)
+  const updatedLabelRef = useRef(null)
+  const updatedDateRef = useRef(null)
+  const updatedHeartRef = useRef(null)
+
+  const lastUpdated = new Intl.DateTimeFormat(
+    'en',
+    {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }
+  )
+    .format(new Date(__BUILD_DATE__))
+    .toLowerCase()
 
   useEffect(() => {
     const context = gsap.context(() => {
@@ -58,7 +73,60 @@ function Footer() {
           },
         }
       )
-    }, techRef)
+
+      const updateTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: updatedRef.current,
+          start: 'top 96%',
+          once: true,
+        },
+      })
+
+      updateTimeline
+        .fromTo(
+          updatedLabelRef.current,
+          {
+            opacity: 0,
+            x: 8,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.35,
+            ease: 'power2.out',
+          }
+        )
+        .fromTo(
+          updatedDateRef.current,
+          {
+            opacity: 0,
+            x: 10,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+            ease: 'power3.out',
+          },
+          '-=0.15'
+        )
+        .fromTo(
+          updatedHeartRef.current,
+          {
+            opacity: 0,
+            scale: 0,
+            rotate: -15,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            rotate: 0,
+            duration: 0.4,
+            ease: 'back.out(2)',
+          },
+          '-=0.15'
+        )
+    })
 
     return () => context.revert()
   }, [])
@@ -162,12 +230,72 @@ function Footer() {
         </div>
 
         {/* BOTTOM */}
-        <div className="mt-10 flex flex-col items-center gap-3 border-t border-paper/10 pt-5 font-typewriter text-[10px] uppercase tracking-[0.2em] md:flex-row md:justify-between md:gap-0">
-          <span className="text-paper/35">
+        <div
+          className="
+            mt-10
+            grid
+            grid-cols-1
+            items-center
+            gap-3
+            border-t
+            border-paper/10
+            pt-5
+            font-typewriter
+            text-[10px]
+            uppercase
+            tracking-[0.2em]
+            md:grid-cols-[1fr_auto_1fr]
+            md:gap-6
+          "
+        >
+          {/* COPYRIGHT */}
+          <span className="order-2 text-center text-paper/35 md:order-1 md:text-left">
             © 2026 Maya
           </span>
 
-          <span className="text-paper/50">
+          {/* LAST UPDATED */}
+          <div
+            ref={updatedRef}
+            className="
+              order-1
+              flex
+              items-center
+              justify-center
+              gap-2
+              whitespace-nowrap
+              md:order-2
+            "
+          >
+            <span
+              ref={updatedLabelRef}
+              className="text-paper/30"
+            >
+              last updated ·
+            </span>
+
+            <span
+              ref={updatedDateRef}
+              className="text-paper/55"
+            >
+              {lastUpdated}
+            </span>
+
+            <span
+              ref={updatedHeartRef}
+              aria-hidden="true"
+              className="
+                -rotate-6
+                font-hand
+                text-sm
+                text-pink/70
+              "
+            >
+              ♡
+            </span>
+          </div>
+
+          {/* DECORATION */}
+          <span className="order-3 hidden text-right text-paper/50 md:block">
             ഒ
           </span>
         </div>
