@@ -33,6 +33,11 @@ const skills = {
       description:
         'I use Tailwind CSS to build responsive interfaces quickly and consistently.',
     },
+    {
+      name: 'GSAP',
+      description:
+        'I use GSAP to create smooth animations and interactive transitions.',
+    },
   ],
 
   tools: [
@@ -50,6 +55,11 @@ const skills = {
       name: 'Vite',
       description:
         'I use Vite to set up and develop modern front-end projects.',
+    },
+    {
+      name: 'Firebase',
+      description:
+        'I use Firebase for authentication and storing user data in my projects.',
     },
     {
       name: 'Figma',
