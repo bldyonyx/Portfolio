@@ -21,7 +21,7 @@ function ProjectShowcase({ slides }) {
   } = useProjectShowcase(slides)
 
   useLayoutEffect(() => {
-    if (!activeSlide) return
+    if (!slides.length) return
 
     const ctx = gsap.context(() => {
       const label = sectionRef.current?.querySelector(
@@ -117,12 +117,17 @@ function ProjectShowcase({ slides }) {
     return () => {
       ctx.revert()
     }
-  }, [activeSlide])
+  }, [slides.length])
 
   if (!activeSlide) return null
 
-  const currentNumber = String(activeIndex + 1).padStart(2, '0')
-  const totalSlides = String(slides.length).padStart(2, '0')
+  const currentNumber = String(
+    activeIndex + 1
+  ).padStart(2, '0')
+
+  const totalSlides = String(
+    slides.length
+  ).padStart(2, '0')
 
   return (
     <section
@@ -130,6 +135,7 @@ function ProjectShowcase({ slides }) {
       className="relative py-20 lg:py-24"
     >
       <div className="mx-auto w-full max-w-6xl min-[1800px]:max-w-7xl">
+
         {/* SECTION INTRO */}
         <div className="mb-9 flex items-end justify-between gap-6">
           <div>
@@ -183,7 +189,9 @@ function ProjectShowcase({ slides }) {
 
             {/* TOP BAR */}
             <div className="mb-7 flex items-center justify-between border-b border-wine/15 pb-4 font-typewriter text-[9px] uppercase tracking-[0.22em] text-wine/45">
-              <span>feature view</span>
+              <span>
+                feature view
+              </span>
 
               <span>
                 {currentNumber} / {totalSlides}
@@ -226,27 +234,27 @@ function ProjectShowcase({ slides }) {
                         }
                       `}
                     />
-                  </div>
 
-                  {/* IMAGE LABEL */}
-                  <span
-                    className="
-                      absolute
-                      bottom-3
-                      right-3
-                      z-10
-                      bg-paper/90
-                      px-2
-                      py-1
-                      font-typewriter
-                      text-[8px]
-                      uppercase
-                      tracking-[0.18em]
-                      text-wine/60
-                    "
-                  >
-                    {activeSlide.eyebrow}
-                  </span>
+                    {/* IMAGE LABEL */}
+                    <span
+                      className="
+                        absolute
+                        bottom-3
+                        right-3
+                        z-10
+                        bg-paper/90
+                        px-2
+                        py-1
+                        font-typewriter
+                        text-[8px]
+                        uppercase
+                        tracking-[0.18em]
+                        text-wine/60
+                      "
+                    >
+                      {activeSlide.eyebrow}
+                    </span>
+                  </div>
                 </div>
 
                 {/* RIGHT SIDE */}
@@ -261,24 +269,22 @@ function ProjectShowcase({ slides }) {
                     lg:py-4
                   "
                 >
-                  {/* TOP CONTENT */}
-                  <div>
+                  {/* CHANGING CONTENT */}
+                  <div ref={changingTextRef}>
                     <p className="font-typewriter text-[9px] uppercase tracking-[0.26em] text-wine/45">
                       {activeSlide.eyebrow}
                     </p>
 
-                    <div ref={changingTextRef}>
-                      <h3 className="mt-4 font-display text-4xl leading-none text-wine md:text-5xl">
-                        {activeSlide.title}
-                      </h3>
+                    <h3 className="mt-4 font-display text-4xl leading-none text-wine md:text-5xl">
+                      {activeSlide.title}
+                    </h3>
 
-                      <p className="mt-6 max-w-md font-typewriter text-xs leading-6 text-ink/65 sm:text-sm sm:leading-7">
-                        {activeSlide.description}
-                      </p>
-                    </div>
+                    <p className="mt-6 max-w-md font-typewriter text-xs leading-6 text-ink/65 sm:text-sm sm:leading-7">
+                      {activeSlide.description}
+                    </p>
                   </div>
 
-                  {/* BOTTOM AREA */}
+                  {/* FIXED BOTTOM AREA */}
                   <div className="mt-10">
                     <div className="mb-6 h-px w-full bg-wine/10" />
 
