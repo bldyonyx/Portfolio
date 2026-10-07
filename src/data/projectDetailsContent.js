@@ -22,12 +22,12 @@ const projectDetailsContent = {
   },
 
   'dear-pages': {
-    category: 'reading companion',
+    category: 'personal reading companion',
 
     question: 'What I wanted to explore',
 
     intro:
-      'I wanted to create a cozy and personal space for keeping track of books while exploring how a larger React application can bring together thoughtful design, organization, and persistent data.',
+      'I wanted to create a cozy and personal space for keeping track of books while exploring how a larger React application can bring together external APIs, persistent user data, personalization, and a thoughtful reading experience.',
 
     note: 'a little home for every story ♡',
   },

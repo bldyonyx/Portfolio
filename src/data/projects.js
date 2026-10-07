@@ -12,6 +12,12 @@ import tasklySavedLists from '../assets/images/projects/taskly/taskly-saved-list
 import tasklyFinishedDay from '../assets/images/projects/taskly/taskly-finished-day.webp'
 
 import dearPagesPreview from '../assets/images/projects/dear-pages/dear-pages-preview.webp'
+import dearPagesDashboard from '../assets/images/projects/dear-pages/dashboard.webp'
+import dearPagesDiscover from '../assets/images/projects/dear-pages/discover.webp'
+import dearPagesLibrary from '../assets/images/projects/dear-pages/library.webp'
+import dearPagesBookPage from '../assets/images/projects/dear-pages/book-page.webp'
+import dearPagesCollections from '../assets/images/projects/dear-pages/collections.webp'
+import dearPagesSettings from '../assets/images/projects/dear-pages/settings.webp'
 
 const projects = [
   {
@@ -141,12 +147,13 @@ const projects = [
     slug: 'dear-pages',
 
     description:
-      'A cozy book tracking app for discovering books, building a personal library, and organizing your reading journey. Currently a work in progress.',
+      'A cozy personal book tracker for discovering books, organizing your library, tracking your reads, and keeping your reading journey in one place.',
 
     tech: [
       'React',
       'JavaScript',
       'Tailwind CSS',
+      'Firebase',
       'Vite',
       'React Router',
       'Google Books API',
@@ -159,9 +166,58 @@ const projects = [
 
     details: {
       main: dearPagesPreview,
+      dashboard: dearPagesDashboard,
+      discover: dearPagesDiscover,
+      library: dearPagesLibrary,
+      bookPage: dearPagesBookPage,
+      collections: dearPagesCollections,
+      settings: dearPagesSettings,
     },
 
-    status: 'work in progress',
+    slides: [
+      {
+        image: dearPagesDashboard,
+        eyebrow: 'your reading space · 01',
+        title: 'Dashboard',
+        description:
+          'See your current reads, recently added books, and yearly reading goal together in one personal overview.',
+      },
+      {
+        image: dearPagesDiscover,
+        eyebrow: 'find your next read · 02',
+        title: 'Discover',
+        description:
+          'Search for books and explore recommendations shaped by your favorite genres alongside trends and other discoveries.',
+      },
+      {
+        image: dearPagesLibrary,
+        eyebrow: 'your books · 03',
+        title: 'My Library',
+        description:
+          'Keep all your saved books together, search through them, and organize each read by its current reading status.',
+      },
+      {
+        image: dearPagesBookPage,
+        eyebrow: 'between you and the pages · 04',
+        title: 'Book Page',
+        description:
+          'Explore book details, manage its reading status, and keep personal notes, ratings, or reviews connected to your read.',
+      },
+      {
+        image: dearPagesCollections,
+        eyebrow: 'little shelves of your own · 05',
+        title: 'Collections',
+        description:
+          'Create personal collections and arrange books into custom shelves independently from their reading status.',
+      },
+      {
+        image: dearPagesSettings,
+        eyebrow: 'make it yours · 06',
+        title: 'Preferences',
+        description:
+          'Manage your profile, favorite genres, and yearly reading goal so Dear Pages can adapt to your reading preferences.',
+      },
+    ],
   },
 ]
 
