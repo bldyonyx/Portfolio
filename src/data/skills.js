@@ -38,6 +38,11 @@ const skills = {
       description:
         'I use GSAP to create smooth animations and interactive transitions.',
     },
+    {
+      name: 'Astro',
+      description:
+        'I use Astro to build lightweight documentation and content-focused interfaces.',
+    },
   ],
 
   tools: [
@@ -52,6 +57,11 @@ const skills = {
         'I use GitHub to manage repositories, share projects, and back up my work.',
     },
     {
+      name: 'GitHub Actions',
+      description:
+        'I use GitHub Actions to automate checks and deployment workflows.',
+    },
+    {
       name: 'Vite',
       description:
         'I use Vite to set up and develop modern front-end projects.',
@@ -59,7 +69,17 @@ const skills = {
     {
       name: 'Firebase',
       description:
-        'I use Firebase for authentication and storing user data in my projects.',
+        'I use Firebase for authentication, Firestore data storage, and deploying my projects.',
+    },
+    {
+      name: 'Vitest',
+      description:
+        'I use Vitest to test important application logic and front-end behavior.',
+    },
+    {
+      name: 'React Testing Library',
+      description:
+        'I use React Testing Library to test React interfaces from a user-focused perspective.',
     },
     {
       name: 'Figma',
