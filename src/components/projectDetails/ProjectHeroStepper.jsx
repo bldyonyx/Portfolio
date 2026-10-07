@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
+
 import gsap from 'gsap'
+
 import {
+  BookOpenText,
   ExternalLink,
   GitBranch,
 } from 'lucide-react'
@@ -14,11 +17,18 @@ function ProjectHeroStepper({
   const trackRef = useRef(null)
   const contentRef = useRef(null)
 
-  const [activeStep, setActiveStep] = useState(0)
-  const [position, setPosition] = useState(0)
-  const [isDragging, setIsDragging] = useState(false)
+  const [activeStep, setActiveStep] =
+    useState(0)
 
-  const updateStepFromPosition = (progress) => {
+  const [position, setPosition] =
+    useState(0)
+
+  const [isDragging, setIsDragging] =
+    useState(false)
+
+  const updateStepFromPosition = (
+    progress
+  ) => {
     if (progress < 0.25) {
       setActiveStep(0)
     } else if (progress < 0.75) {
@@ -51,7 +61,8 @@ function ProjectHeroStepper({
 
       if (!track) return
 
-      const bounds = track.getBoundingClientRect()
+      const bounds =
+        track.getBoundingClientRect()
 
       const progress = Math.max(
         0,
@@ -69,22 +80,31 @@ function ProjectHeroStepper({
     const handlePointerUp = () => {
       setIsDragging(false)
 
-      const closestStep = positions.reduce(
-        (closest, current, index) => {
-          const currentDistance = Math.abs(
-            current - position
-          )
+      const closestStep =
+        positions.reduce(
+          (
+            closest,
+            current,
+            index
+          ) => {
+            const currentDistance =
+              Math.abs(
+                current - position
+              )
 
-          const closestDistance = Math.abs(
-            positions[closest] - position
-          )
+            const closestDistance =
+              Math.abs(
+                positions[closest] -
+                  position
+              )
 
-          return currentDistance < closestDistance
-            ? index
-            : closest
-        },
-        0
-      )
+            return currentDistance <
+              closestDistance
+              ? index
+              : closest
+          },
+          0
+        )
 
       moveToStep(closestStep)
     }
@@ -143,7 +163,8 @@ function ProjectHeroStepper({
 
     if (!track) return
 
-    const bounds = track.getBoundingClientRect()
+    const bounds =
+      track.getBoundingClientRect()
 
     const progress = Math.max(
       0,
@@ -154,22 +175,31 @@ function ProjectHeroStepper({
       )
     )
 
-    const closestStep = positions.reduce(
-      (closest, current, index) => {
-        const currentDistance = Math.abs(
-          current - progress
-        )
+    const closestStep =
+      positions.reduce(
+        (
+          closest,
+          current,
+          index
+        ) => {
+          const currentDistance =
+            Math.abs(
+              current - progress
+            )
 
-        const closestDistance = Math.abs(
-          positions[closest] - progress
-        )
+          const closestDistance =
+            Math.abs(
+              positions[closest] -
+                progress
+            )
 
-        return currentDistance < closestDistance
-          ? index
-          : closest
-      },
-      0
-    )
+          return currentDistance <
+            closestDistance
+            ? index
+            : closest
+        },
+        0
+      )
 
     moveToStep(closestStep)
   }
@@ -204,6 +234,7 @@ function ProjectHeroStepper({
 
   return (
     <div className="grid min-h-[280px] grid-cols-[32px_1fr] gap-7 sm:grid-cols-[40px_1fr] sm:gap-9">
+
       {/* SLIDER */}
       <div className="relative flex justify-center py-2">
         <div
@@ -225,8 +256,12 @@ function ProjectHeroStepper({
             aria-label="Project information section"
             aria-valuemin={1}
             aria-valuemax={3}
-            aria-valuenow={activeStep + 1}
-            onPointerDown={handlePointerDown}
+            aria-valuenow={
+              activeStep + 1
+            }
+            onPointerDown={
+              handlePointerDown
+            }
             onKeyDown={handleKeyDown}
             className="
               absolute
@@ -261,6 +296,7 @@ function ProjectHeroStepper({
         ref={contentRef}
         className="flex min-h-[250px] items-center"
       >
+
         {/* 01 — ABOUT */}
         {activeStep === 0 && (
           <div className="w-full">
@@ -324,35 +360,38 @@ function ProjectHeroStepper({
               data-step-reveal
               className="mt-7 max-w-lg font-typewriter text-sm leading-7 text-paper/55"
             >
-              the tools and technologies behind this project.
+              the tools and technologies
+              behind this project.
             </p>
 
             <div
               data-step-reveal
               className="mt-7 flex flex-wrap gap-2"
             >
-              {project.tech.map((item) => (
-                <span
-                  key={item}
-                  className="
-                    border
-                    border-paper/20
-                    px-4
-                    py-2
-                    font-typewriter
-                    text-[10px]
-                    uppercase
-                    tracking-[0.16em]
-                    text-paper/65
-                    transition-colors
-                    duration-300
-                    hover:border-pink/45
-                    hover:text-pink
-                  "
-                >
-                  {item}
-                </span>
-              ))}
+              {project.tech.map(
+                (item) => (
+                  <span
+                    key={item}
+                    className="
+                      border
+                      border-paper/20
+                      px-4
+                      py-2
+                      font-typewriter
+                      text-[10px]
+                      uppercase
+                      tracking-[0.16em]
+                      text-paper/65
+                      transition-colors
+                      duration-300
+                      hover:border-pink/45
+                      hover:text-pink
+                    "
+                  >
+                    {item}
+                  </span>
+                )
+              )}
             </div>
           </div>
         )}
@@ -378,7 +417,9 @@ function ProjectHeroStepper({
               data-step-reveal
               className="mt-4 max-w-lg font-typewriter text-sm leading-7 text-paper/55"
             >
-              take a look at the code or explore the live project.
+              explore the project, take a
+              look at the code, or dive
+              into the documentation.
             </p>
 
             <div
@@ -386,36 +427,38 @@ function ProjectHeroStepper({
               className="mt-8 flex flex-wrap gap-8 font-typewriter text-xs"
             >
               {/* GITHUB */}
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noreferrer"
-                className="
-                  group
-                  inline-flex
-                  items-center
-                  gap-2
-                  border-b
-                  border-paper/45
-                  pb-1.5
-                  text-paper/80
-                  transition-colors
-                  duration-300
-                  hover:border-pink
-                  hover:text-pink
-                "
-              >
-                <GitBranch
-                  size={14}
-                  strokeWidth={1.7}
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:-rotate-6"
-                />
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="
+                    group
+                    inline-flex
+                    items-center
+                    gap-2
+                    border-b
+                    border-paper/45
+                    pb-1.5
+                    text-paper/80
+                    transition-colors
+                    duration-300
+                    hover:border-pink
+                    hover:text-pink
+                  "
+                >
+                  <GitBranch
+                    size={14}
+                    strokeWidth={1.7}
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:-rotate-6"
+                  />
 
-                <span>
-                  GitHub
-                </span>
-              </a>
+                  <span>
+                    GitHub
+                  </span>
+                </a>
+              )}
 
               {/* LIVE SITE */}
               {project.demo && (
@@ -452,6 +495,44 @@ function ProjectHeroStepper({
 
                   <span>
                     live site
+                  </span>
+                </a>
+              )}
+
+              {/* DOCUMENTATION */}
+              {project.docs && (
+                <a
+                  href={project.docs}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="
+                    group
+                    inline-flex
+                    items-center
+                    gap-2
+                    border-b
+                    border-paper/45
+                    pb-1.5
+                    text-paper/80
+                    transition-colors
+                    duration-300
+                    hover:border-pink
+                    hover:text-pink
+                  "
+                >
+                  <BookOpenText
+                    size={14}
+                    strokeWidth={1.7}
+                    aria-hidden="true"
+                    className="
+                      transition-transform
+                      duration-300
+                      group-hover:-rotate-3
+                    "
+                  />
+
+                  <span>
+                    documentation
                   </span>
                 </a>
               )}

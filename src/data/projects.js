@@ -160,7 +160,9 @@ const projects = [
       'Open Library API',
     ],
 
-    github: 'https://github.com/bldyonyx/DearPages',
+  github: 'https://github.com/bldyonyx/DearPages',
+  demo: 'https://dear-pages-booktracker.web.app',
+  docs: 'https://dear-pages-docs.web.app',
 
     image: dearPagesPreview,
 
