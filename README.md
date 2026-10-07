@@ -41,7 +41,17 @@ and more.
 
 `React` · `JavaScript` · `CSS` · `Vite`
 
-> Taskly is currently a work in progress.
+> Taskly is currently paused while I focus on other projects.
+
+### Dear Pages
+
+A personal reading tracker for discovering books, organizing a library,
+tracking reading statuses, creating collections, and keeping personal
+ratings, reviews, and notes.
+
+`React` · `JavaScript` · `Tailwind CSS` · `Vite` · `Firebase`
+
+> Dear Pages is currently a work in progress.
 
 ---
 
@@ -62,6 +72,18 @@ Some of the things I explored while building it include:
 
 I'm still learning and improving with every project, so this portfolio will
 continue to grow alongside me ♡
+
+---
+
+## ✦ Usage
+
+This repository is public for portfolio and learning purposes.
+
+Feel free to explore the code and use it as inspiration for your own learning.
+Please do not copy, reproduce, or redistribute this portfolio, its design,
+or substantial parts of its source code as your own work.
+
+© 2026 Maya. All rights reserved.
 
 ---
 
